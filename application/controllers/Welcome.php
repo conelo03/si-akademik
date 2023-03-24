@@ -20,8 +20,6 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$db_test = $this->db->get('master_siswa')->result_array();
-		var_dump($db_test);
-		// $this->load->view('welcome_message');
-	}
+		$this->load->view('welcome_message');
+	}	
 }
