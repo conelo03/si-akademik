@@ -16,7 +16,7 @@ class Auth extends CI_Controller {
         $validate = $this->Auth_Model->login($request['username']);
         if($validate){
             if($validate['role'] == 1){
-                echo 'Selamat Datang Akademik';
+                redirect('Auth/dashboard_users');
             }else if($validate['role'] == 2){
                 echo 'Selamat Datang Guru';
             }else{
@@ -25,5 +25,13 @@ class Auth extends CI_Controller {
         }else{
             echo 'user tidak terdaftar';
         }
+    }
+
+    public function dashboard_users(){
+        $data = [
+            'title' => 'Dashboard Akademik',
+            'content' => 'akademik/dashboard'
+        ];
+        $this->load->view('dashboard_template/main',$data);
     }
 }
