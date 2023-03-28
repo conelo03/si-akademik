@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2023 at 03:53 PM
+-- Generation Time: Mar 28, 2023 at 04:45 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -35,6 +35,13 @@ CREATE TABLE `absensi` (
   `keterangan` enum('Sakit','Izin','Alpa') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `absensi`
+--
+
+INSERT INTO `absensi` (`id`, `no_identitas`, `jam_masuk`, `jam_keluar`, `keterangan`) VALUES
+('1', 51299, '21:31', 'NULL', '');
+
 -- --------------------------------------------------------
 
 --
@@ -51,7 +58,7 @@ CREATE TABLE `master_guru` (
   `gelar` varchar(20) NOT NULL,
   `pendidikan_terakhir` varchar(20) NOT NULL,
   `email` varchar(30) NOT NULL,
-  `telp` int(13) NOT NULL
+  `telp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -93,7 +100,7 @@ CREATE TABLE `master_siswa` (
 --
 
 INSERT INTO `master_siswa` (`nisn`, `nama`, `alamat`, `jk`, `agama`, `tempat_lahir`, `tgl_lahir`, `kelurahan`, `kecamatan`, `kota_kab`, `provinsi`, `kode_pos`, `ayah`, `pekerjaan_ayah`, `ibu`, `pekerjaan_ibu`, `wali`, `pekerjaan_wali`, `telp_ayah`, `telp_ibu`, `telp_wali`, `telp_siswa`, `tanggal_masuk`, `status`, `foto`) VALUES
-(24892374, '', '', '', '', '', '0000-00-00', '', '', '', '', 0, '', '', '', '', '', '', 0, 0, 0, 0, '0000-00-00', 0, '');
+(2147483647, '', '', '', '', '', '0000-00-00', '', '', '', '', 0, '', '', '', '', '', '', 0, 0, 0, 0, '0000-00-00', 0, '');
 
 -- --------------------------------------------------------
 
@@ -122,9 +129,39 @@ CREATE TABLE `pendaftar` (
   `tempat_lahir` varchar(128) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `agama` varchar(128) NOT NULL,
-  `no_telp` int(13) NOT NULL,
+  `no_telp` varchar(20) NOT NULL,
   `email` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pendaftar`
+--
+
+INSERT INTO `pendaftar` (`id`, `nisn`, `nama`, `jk`, `tempat_lahir`, `tanggal_lahir`, `agama`, `no_telp`, `email`) VALUES
+(8, 749829, 'Inwan Anwar Solihudin', 'L', 'Karawang', '1999-12-05', 'Islam', '087778815677', 'inwan.up3@pln.co.id');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `id` int(11) NOT NULL,
+  `nama` varchar(128) NOT NULL,
+  `username` varchar(128) NOT NULL,
+  `password` varchar(128) NOT NULL,
+  `role` int(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`) VALUES
+(1, 'Ahmad', 'ahmad', '123456', 1),
+(2, 'Richard', 'richard', '123456', 2),
+(3, 'Kipli', 'kipli', '123456', 3);
 
 --
 -- Indexes for dumped tables
@@ -157,6 +194,12 @@ ALTER TABLE `pendaftar`
   ADD UNIQUE KEY `nisn` (`nisn`);
 
 --
+-- Indexes for table `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -170,7 +213,13 @@ ALTER TABLE `pembayaran`
 -- AUTO_INCREMENT for table `pendaftar`
 --
 ALTER TABLE `pendaftar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `users`
+--
+ALTER TABLE `users`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Constraints for dumped tables

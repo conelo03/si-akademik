@@ -30,7 +30,8 @@ class Auth extends CI_Controller {
     public function dashboard_users(){
         $data = [
             'title' => 'Dashboard Akademik',
-            'content' => 'akademik/dashboard'
+            'content' => 'akademik/dashboard',
+            'role' => 'Akademik'
         ];
         $this->load->view('dashboard_template/main',$data);
     }
