@@ -98,11 +98,93 @@ class Akademik extends CI_Controller {
   return redirect('Akademik/master_guru');
 }
 
-public function deleteGuru($id){ 
-  $this->Master_Model->delete('nip','master_guru',$id);
-  $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus data guru!</div>');
-  return redirect('Akademik/master_guru');
+  public function deleteGuru($id){ 
+    $this->Master_Model->delete('nip','master_guru',$id);
+    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus data guru!</div>');
+    return redirect('Akademik/master_guru');
+  }
+
+  public function master_siswa(){
+    $data = [
+      'title' => 'Data Siswa',
+      'role' => 'Akademik',
+      'content' => 'akademik/siswa',
+      'siswa' => $this->Master_Model->get('master_siswa')
+  ];
+  $this->load->view('dashboard_template/main',$data);
+  }
+
+  public function addSiswa(){
+    $request = [
+        'nisn'=> $this->input->post('nisn'),
+        'nama'=> $this->input->post('nama'),
+        'alamat'=> $this->input->post('alamat'),
+        'jk'=> $this->input->post('jk'),
+        'agama'=> $this->input->post('agama'),
+        'tempat_lahir'=> $this->input->post('tempat'),
+        'tgl_lahir'=> $this->input->post('tgl_lahir'),
+        'kelurahan'=> $this->input->post('kelurahan'),
+        'kecamatan'=> $this->input->post('kecamatan'),
+        'kota_kab'=> $this->input->post('kota_kab'),
+        'provinsi'=> $this->input->post('provinsi'),
+        'kode_pos'=> $this->input->post('kode_pos'),
+        'ayah'=> $this->input->post('ayah'),
+        'pekerjaan_ayah'=> $this->input->post('pekerjaan_ayah'),
+        'ibu'=> $this->input->post('ibu'),
+        'pekerjaan_ibu'=> $this->input->post('pekerjaan_ibu'),
+        'wali'=> $this->input->post('wali'),
+        'pekerjaan_wali'=> $this->input->post('pekerjaan_wali'),
+        'telp_ayah'=> $this->input->post('telp_ayah'),
+        'telp_ibu'=> $this->input->post('telp_ibu'),
+        'telp_wali'=> $this->input->post('telp_wali'),
+        'telp_siswa'=> $this->input->post('telp_siswa'),
+        'tanggal masuk'=> $this->input->post('tanggal masuk'),
+        'status'=> $this->input->post('status'),
+        'foto'=> $this->input->post('foto')
+    ];
+    $this->Master_Model->add($request,'master_siswa');
+    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah data siswa!</div>');
+  return redirect('Akademik/master_siswa');
 }
+
+public function updateSiswa($id){
+    $request = [
+      'nisn'=> $this->input->post('nisn'),
+      'nama'=> $this->input->post('nama'),
+      'alamat'=> $this->input->post('alamat'),
+      'jk'=> $this->input->post('jk'),
+      'agama'=> $this->input->post('agama'),
+      'tempat_lahir'=> $this->input->post('tempat'),
+      'tgl_lahir'=> $this->input->post('tgl_lahir'),
+      'kelurahan'=> $this->input->post('kelurahan'),
+      'kecamatan'=> $this->input->post('kecamatan'),
+      'kota_kab'=> $this->input->post('kota_kab'),
+      'provinsi'=> $this->input->post('provinsi'),
+      'kode_pos'=> $this->input->post('kode_pos'),
+      'ayah'=> $this->input->post('ayah'),
+      'pekerjaan_ayah'=> $this->input->post('pekerjaan_ayah'),
+      'ibu'=> $this->input->post('ibu'),
+      'pekerjaan_ibu'=> $this->input->post('pekerjaan_ibu'),
+      'wali'=> $this->input->post('wali'),
+      'pekerjaan_wali'=> $this->input->post('pekerjaan_wali'),
+      'telp_ayah'=> $this->input->post('telp_ayah'),
+      'telp_ibu'=> $this->input->post('telp_ibu'),
+      'telp_wali'=> $this->input->post('telp_wali'),
+      'telp_siswa'=> $this->input->post('telp_siswa'),
+      'tanggal masuk'=> $this->input->post('tanggal masuk'),
+      'status'=> $this->input->post('status'),
+      'foto'=> $this->input->post('foto')
+    ];
+    $this->Master_Model->update('nisn','master_siswa',$request,$id);
+    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah data siswa!</div>');
+    return redirect('Akademik/master_siswa');
+  }
+
+  public function deleteSiswa($id){ 
+    $this->Master_Model->delete('nisn','master_siswa',$id);
+    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus data siswa!</div>');
+    return redirect('Akademik/master_siswa');
+  }
 
 
 }

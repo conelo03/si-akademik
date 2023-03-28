@@ -50,7 +50,7 @@
       </div>
       <!-- Modal Tambah -->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Pendaftar</h5>
@@ -99,7 +99,7 @@
 <?php foreach ($pendaftar as $daftar1) :?>
     <!-- Modal Edit -->
     <div class="modal fade" id="editModal<?= $daftar1['nisn']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Pendaftar</h5>
