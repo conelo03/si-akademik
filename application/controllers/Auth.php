@@ -35,4 +35,9 @@ class Auth extends CI_Controller {
         ];
         $this->load->view('dashboard_template/main',$data);
     }
+
+    public function logout(){
+        $this->session->sess_destroy();
+        return $this->load->view('login');
+    }
 }

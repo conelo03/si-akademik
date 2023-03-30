@@ -19,7 +19,7 @@
                     <thead>
                       <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NIP</th>
+                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NUPTK</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telepon</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
@@ -31,12 +31,12 @@
                     foreach($guru as $teach) : ?>
                       <tr>
                          <td><?= $no++;?></td>
-                         <td><?= $teach['nip'];?></td>
+                         <td><?= $teach['nuptk'];?></td>
                          <td><?= $teach['nama'];?></td>
                          <td><?= $teach['telp'];?></td>
                          <td>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#editModal<?= $teach['nip']?>" class="btn btn-primary">Edit</a>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $teach['nip']?>" class="btn btn-danger">Hapus</a>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#editModal<?= $teach['nuptk']?>" class="btn btn-primary">Edit</a>
+                            <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $teach['nuptk']?>" class="btn btn-danger">Hapus</a>
                          </td>
                       </tr>
                     <?php endforeach;?>
@@ -59,7 +59,10 @@
       <div class="modal-body">
         <form action="<?= base_url('Akademik/addGuru');?>" method="POST" class="form">
             <div class="form-group">
-                <input type="number" class="form-control" name="nip" placeholder="NIP">
+                <input type="number" class="form-control" name="nuptk" placeholder="NUPTK">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" name="nik" placeholder="NIK">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="nama" placeholder="Nama">
@@ -78,13 +81,10 @@
                 <input type="date" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="alamat" placeholder="Alamat">
+                <input type="text" class="form-control" name="jabatan" placeholder="Jabatan">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="gelar" placeholder="Gelar">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" name="email" placeholder="Email">
+                <input type="text" class="form-control" name="masa_kerja" placeholder="Masa Kerja">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="pendidikan" placeholder="Pendidikan Terakhir">
@@ -104,17 +104,20 @@
 
 <?php foreach ($guru as $teach1) :?>
     <!-- Modal Edit -->
-    <div class="modal fade" id="editModal<?= $teach1['nip']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal<?= $teach1['nuptk']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Pendaftar</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Data Guru</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/updateGuru/'.$teach1['nip']);?>" method="POST" class="form">
+        <form action="<?= base_url('Akademik/updateGuru/'.$teach1['nuptk']);?>" method="POST" class="form">
             <div class="form-group">
-                <input type="number" class="form-control" value="<?= $teach1['nip']?>" name="nip" placeholder="NIP">
+                <input type="number" class="form-control" value="<?= $teach1['nuptk']?>" name="nuptk" placeholder="NUPTK">
+            </div>
+            <div class="form-group">
+                <input type="number" class="form-control" value="<?= $teach1['nik']?>" name="nik" placeholder="NIK">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" value="<?= $teach1['nama']?>" name="nama" placeholder="Nama">
@@ -137,13 +140,10 @@
                 <input type="date" class="form-control" value="<?= $teach1['tgl_lahir']?>" name="tgl_lahir" placeholder="Tanggal Lahir">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" value="<?= $teach1['alamat']?>" name="alamat" placeholder="Alamat">
+                <input type="text" class="form-control" value="<?= $teach1['jabatan']?>" name="jabatan" placeholder="Jabatan">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="gelar" value="<?= $teach1['gelar']?>" placeholder="Gelar">
-            </div>
-            <div class="form-group">
-                <input type="email" class="form-control" value="<?= $teach1['email']?>" name="email" placeholder="Email">
+                <input type="text" class="form-control" name="masa_kerja" value="<?= $teach1['masa_kerja']?>" placeholder="Masa Kerja">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="pendidikan" value="<?= $teach1['pendidikan_terakhir']?>" placeholder="Pendidikan Terakhir">
@@ -164,15 +164,15 @@
 
 <?php foreach ($guru as $teach2) :?>
     <!-- Modal Edit -->
-    <div class="modal fade" id="deleteModal<?= $teach2['nip']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal<?= $teach2['nuptk']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Hapus Pendaftar</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Hapus Data Guru</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/deleteGuru/'.$teach2['nip']);?>" method="POST" class="form">
+        <form action="<?= base_url('Akademik/deleteGuru/'.$teach2['nuptk']);?>" method="POST" class="form">
             <p>Apakah Anda yakin ingin menghapus guru ini?</p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>

@@ -64,16 +64,16 @@ class Akademik extends CI_Controller {
 
     public function addGuru(){
       $request = [
-          'nip'=> $this->input->post('nip'),
+          'nuptk'=> $this->input->post('nuptk'),
+          'nik'=> $this->input->post('nik'),
           'nama'=> $this->input->post('nama'),
           'jk'=> $this->input->post('jk'),
           'tempat_lahir'=> $this->input->post('tempat'),
           'tgl_lahir'=> $this->input->post('tgl_lahir'),
-          'alamat'=> $this->input->post('alamat'),
-          'gelar'=> $this->input->post('gelar'),
+          'jabatan'=> $this->input->post('jabatan'),
+          'masa_kerja'=> $this->input->post('masa_kerja'),
           'pendidikan_terakhir'=> $this->input->post('pendidikan'),
-          'telp'=> $this->input->post('telp'),
-          'email'=> $this->input->post('email')
+          'telp'=> $this->input->post('telp')
       ];
       $this->Master_Model->add($request,'master_guru');
       $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah data guru!</div>');
@@ -82,24 +82,24 @@ class Akademik extends CI_Controller {
 
   public function updateGuru($id){
     $request = [
-      'nip'=> $this->input->post('nip'),
+      'nuptk'=> $this->input->post('nuptk'),
+      'nik'=> $this->input->post('nik'),
       'nama'=> $this->input->post('nama'),
       'jk'=> $this->input->post('jk'),
       'tempat_lahir'=> $this->input->post('tempat'),
       'tgl_lahir'=> $this->input->post('tgl_lahir'),
-      'alamat'=> $this->input->post('alamat'),
-      'gelar'=> $this->input->post('gelar'),
+      'jabatan'=> $this->input->post('jabatan'),
+      'masa_kerja'=> $this->input->post('masa_kerja'),
       'pendidikan_terakhir'=> $this->input->post('pendidikan'),
-      'telp'=> $this->input->post('telp'),
-      'email'=> $this->input->post('email')
+      'telp'=> $this->input->post('telp')
     ];
-    $this->Master_Model->update(['nip'=>$id],'master_guru',$request,$id);
+    $this->Master_Model->update(['nuptk'=>$id],'master_guru',$request,$id);
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah data guru!</div>');
   return redirect('Akademik/master_guru');
 }
 
   public function deleteGuru($id){ 
-    $this->Master_Model->delete('nip','master_guru',$id);
+    $this->Master_Model->delete('nuptk','master_guru',$id);
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus data guru!</div>');
     return redirect('Akademik/master_guru');
   }
