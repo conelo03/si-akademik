@@ -31,7 +31,8 @@ class Auth extends CI_Controller {
         $data = [
             'title' => 'Dashboard Akademik',
             'content' => 'akademik/dashboard',
-            'role' => 'Akademik'
+            'role' => 'Akademik',
+            'count_guru' => $this->Master_Model->count('master_guru')
         ];
         $this->load->view('dashboard_template/main',$data);
     }

@@ -7,7 +7,7 @@
                   <div class="numbers">
                     <p class="text-sm mb-0 text-capitalize font-weight-bold">Jumlah Guru</p>
                     <h5 class="font-weight-bolder mb-0">
-                      130 Orang
+                      <?= $count_guru;?>
                     </h5>
                   </div>
                 </div>

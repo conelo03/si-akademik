@@ -19,4 +19,8 @@ class Master_Model extends CI_Model {
     public function delete($key,$table,$id){
         return $this->db->delete($table,[$key => $id]);
     }
+
+    public function count($table){
+        return $this->db->get($table)->num_rows();
+    }
 }
