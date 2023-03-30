@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 28, 2023 at 04:45 PM
+-- Generation Time: Mar 30, 2023 at 04:51 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -49,15 +49,15 @@ INSERT INTO `absensi` (`id`, `no_identitas`, `jam_masuk`, `jam_keluar`, `keteran
 --
 
 CREATE TABLE `master_guru` (
-  `nip` int(30) NOT NULL,
+  `nuptk` varchar(30) NOT NULL,
+  `nik` varchar(20) NOT NULL,
   `nama` varchar(128) NOT NULL,
   `jk` enum('L','P') NOT NULL,
   `tempat_lahir` varchar(30) NOT NULL,
   `tgl_lahir` date NOT NULL,
-  `alamat` text NOT NULL,
-  `gelar` varchar(20) NOT NULL,
+  `jabatan` varchar(30) NOT NULL,
+  `masa_kerja` varchar(20) NOT NULL,
   `pendidikan_terakhir` varchar(20) NOT NULL,
-  `email` varchar(30) NOT NULL,
   `telp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -172,6 +172,12 @@ INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`) VALUES
 --
 ALTER TABLE `absensi`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `master_guru`
+--
+ALTER TABLE `master_guru`
+  ADD PRIMARY KEY (`nuptk`);
 
 --
 -- Indexes for table `master_siswa`
