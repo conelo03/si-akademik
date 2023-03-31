@@ -1,41 +1,97 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
-</head>
-<body>
+  <meta charset="UTF-8">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+  <title>Login &mdash; Siakad</title>
 
-<div class="row">
-    <div class="col-md-4"></div>
-    <div class="col-md-4">
-            <div class="card" style="width: 18rem; margin-top:100px" >
-            <div class="card-body">
-                <h4 class="text-center">Login</h4>
-                <p>Silahkan Login terlebih dahulu!</p>
-                <form action="<?= base_url('Auth/login') ?>" method="POST" class="form">
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="username" placeholder="Masukkan Username ...">
+  <!-- General CSS Files -->
+  <link rel="stylesheet" href="<?= base_url()?>assets/modules/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="<?= base_url()?>assets/modules/fontawesome/css/all.min.css">
+
+  <!-- CSS Libraries -->
+  <link rel="stylesheet" href="<?= base_url()?>assets/modules/bootstrap-social/bootstrap-social.css">
+
+  <!-- Template CSS -->
+  <link rel="stylesheet" href="<?= base_url()?>assets/css/style.css">
+  <link rel="stylesheet" href="<?= base_url()?>assets/css/components.css">
+<!-- Start GA -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-94034622-3');
+</script>
+<!-- /END GA --></head>
+
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+
+            <div class="card card-primary">
+              <div class="card-header"><h4>Login</h4></div>
+
+              <div class="card-body">
+                <form method="POST" autocomplete="off" action="<?= base_url('Auth/login')?>" class="needs-validation" novalidate="">
+                  <div class="form-group">
+                    <label for="email">Username</label>
+                    <input id="email" type="text" class="form-control" name="username" tabindex="1" required autofocus autocomplete="off">
+                    <div class="invalid-feedback">
+                      Please fill in your username
                     </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" name="password" placeholder="Masukkan Password ...">
+                  </div>
+
+                  <div class="form-group">
+                    <div class="d-block">
+                    	<label for="password" class="control-label">Password</label>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Login</button>
+                    <input id="password" type="password" class="form-control" name="password" tabindex="2" required autocomplete="off">
+                    <div class="invalid-feedback">
+                      please fill in your password
                     </div>
+                  </div>
+
+                  <div class="form-group">
+                    <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                      Login
+                    </button>
+                  </div>
                 </form>
 
-                
-            </div>
-        </div>
-    </div>
-    <div class="col-md-4"></div>
-</div>
 
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+              </div>
+            </div>
+
+            <div class="simple-footer">
+              Copyright &copy; Siakad <?= date('Y')?>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- General JS Scripts -->
+  <script src="<?= base_url()?>assets/modules/jquery.min.js"></script>
+  <script src="<?= base_url()?>assets/modules/popper.js"></script>
+  <script src="<?= base_url()?>assets/modules/tooltip.js"></script>
+  <script src="<?= base_url()?>assets/modules/bootstrap/js/bootstrap.min.js"></script>
+  <script src="<?= base_url()?>assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="<?= base_url()?>assets/modules/moment.min.js"></script>
+  <script src="<?= base_url()?>assets/js/stisla.js"></script>
+  
+  <!-- JS Libraies -->
+
+  <!-- Page Specific JS File -->
+  
+  <!-- Template JS File -->
+  <script src="<?= base_url()?>assets/js/scripts.js"></script>
+  <script src="<?= base_url()?>assets/js/custom.js"></script>
 </body>
 </html>
