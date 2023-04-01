@@ -3,12 +3,12 @@
           <div class="card mb-4">
             <div class="card-header pb-0">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <h6>Data Siswa</h6>
+                      </div>
+                      <div class="col">
+                        <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Siswa</button>
                         <?= $this->session->flashdata('message');?>
-                    </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Tambah Siswa</button>
                     </div>
                 </div>
             </div>
@@ -21,25 +21,34 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NISN</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telepon</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Kelamin</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                    <?php 
+                    <?php
+                    if(empty($siswa)){ ?>
+                        <td class="text-center" colspan=5>Tidak Ada Data</td>
+                    <?php }else{ 
                     $no = 1;
                     foreach($siswa as $study) : ?>
                       <tr>
                          <td><?= $no++;?></td>
                          <td><?= $study['nisn'];?></td>
                          <td><?= $study['nama'];?></td>
-                         <td><?= $study['telp_siswa'];?></td>
+                         <?php if($study['jk'] == 'L'){?>
+                            <td>Laki-laki</td>
+                            <?php }else{?>
+                              <td>Perempuan</td>
+                          <?php }?>
                          <td>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#editModal<?= $study['nisn']?>" class="btn btn-primary">Edit</a>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $study['nisn']?>" class="btn btn-danger">Hapus</a>
+                            <a href="" data-toggle="modal" data-target="#editModal<?= $study['nisn']?>" class="btn btn-primary">Edit</a>
+                            <a href="" data-toggle="modal" data-target="#deleteModal<?= $study['nisn']?>" class="btn btn-danger">Hapus</a>
                          </td>
                       </tr>
-                    <?php endforeach;?>
+                    <?php endforeach;
+                    }
+                    ?>
                     </tbody>
                   </table>
                 </div>
@@ -50,21 +59,22 @@
       </div>
       <!-- Modal Tambah -->
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg modal-dialog-scrollable">
+  <div class="modal-dialog modal-dialog-scrollable">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Siswa</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
         <form action="<?= base_url('Akademik/addSiswa');?>" method="POST" class="form">
-        <div class="row">
-          <div class="col-md-6">
           <div class="form-group">
                 <input type="number" class="form-control" name="nisn" placeholder="NISN">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="nama" placeholder="Nama">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="alamat" placeholder="Alamat">
             </div>
             <div class="form-group">
                 <select name="jk" class="form-control">
@@ -83,37 +93,17 @@
                 <input type="date" class="form-control" name="tgl_lahir" placeholder="Tanggal Lahir">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="alamat" placeholder="Alamat">
+                <input type="text" class="form-control" name="tahun_ajaran" placeholder="Tahun Ajaran">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="alamat" placeholder="Alamat">
-            </div>
-          </div>
-          <div class="col-md-6">
-            <div class="form-group">
-              <select id="provinsi" class="form-control" name="provinsi">
-                <option>-- Provinsi --</option>
-              </select>
+                <input type="text" class="form-control" name="alat_transportasi" placeholder="Alat Transportasi">
             </div>
             <div class="form-group">
-                  <input type="text" class="form-control" name="alamat" placeholder="Alamat">
-              </div>
-              <div class="form-group">
-                  <input type="text" class="form-control" name="gelar" placeholder="Gelar">
-              </div>
-              <div class="form-group">
-                  <input type="email" class="form-control" name="email" placeholder="Email">
-              </div>
-              <div class="form-group">
-                  <input type="text" class="form-control" name="pendidikan" placeholder="Pendidikan Terakhir">
-              </div>
-              <div class="form-group">
-                  <input type="number" class="form-control" name="telp" placeholder="No. Telepon">
-              </div>
-          </div>
+                <input type="text" class="form-control" name="jenis_tinggal" placeholder="Jenis Tinggal">
+            </div>
         </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
               <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
@@ -122,26 +112,29 @@
   </div>
 </div>
 
-<?php foreach ($guru as $teach1) :?>
+<?php foreach ($siswa as $study1) :?>
     <!-- Modal Edit -->
-    <div class="modal fade" id="editModal<?= $teach1['nip']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal<?= $study1['nisn']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Pendaftar</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h5 class="modal-title" id="exampleModalLabel">Edit Siswa</h5>
+        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/updateGuru/'.$teach1['nip']);?>" method="POST" class="form">
+        <form action="<?= base_url('Akademik/updateSiswa/'.$study1['nisn']);?>" method="POST" class="form">
             <div class="form-group">
-                <input type="number" class="form-control" value="<?= $teach1['nip']?>" name="nip" placeholder="NIP">
+                <input type="number" class="form-control" value="<?= $study1['nisn']?>" name="nisn" placeholder="NISN">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" value="<?= $teach1['nama']?>" name="nama" placeholder="Nama">
+                <input type="text" class="form-control" value="<?= $study1['nama']?>" name="nama" placeholder="Nama">
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" value="<?= $study1['alamat']?>" name="alamat" placeholder="Alamat">
             </div>
             <div class="form-group">
                 <select name="jk" class="form-control">
-                    <?php if ($teach1['jk'] === 'L') { ?>
+                    <?php if ($study1['jk'] === 'L') { ?>
                       <option value="L">-- Laki-laki --</option>
                       <?php }else{?>
                         <option value="P">-- Perempuan --</option>
@@ -151,28 +144,22 @@
                 </select>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" value="<?= $teach1['tempat_lahir']?>" name="tempat" placeholder="Tempat Lahir">
+                <input type="text" class="form-control" value="<?= $study1['tempat_lahir']?>" name="tempat" placeholder="Tempat Lahir">
             </div>
             <div class="form-group">
-                <input type="date" class="form-control" value="<?= $teach1['tgl_lahir']?>" name="tgl_lahir" placeholder="Tanggal Lahir">
+                <input type="date" class="form-control" value="<?= $study1['tgl_lahir']?>" name="tgl_lahir" placeholder="Tanggal Lahir">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" value="<?= $teach1['alamat']?>" name="alamat" placeholder="Alamat">
+                <input type="text" class="form-control" value="<?= $study1['tahun_ajaran']?>" name="tahun_ajaran" placeholder="Tahun Ajaran">
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="gelar" value="<?= $teach1['gelar']?>" placeholder="Gelar">
+                <input type="text" class="form-control" name="alat_transportasi" value="<?= $study1['alat_transportasi']?>" placeholder="Alat Transportasi">
             </div>
             <div class="form-group">
-                <input type="email" class="form-control" value="<?= $teach1['email']?>" name="email" placeholder="Email">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="pendidikan" value="<?= $teach1['pendidikan_terakhir']?>" placeholder="Pendidikan Terakhir">
-            </div>
-            <div class="form-group">
-                <input type="number" class="form-control" value="<?= $teach1['telp']?>" name="telp" placeholder="No. Telepon">
+                <input type="text" class="form-control" name="jenis_tinggal" value="<?= $study1['jenis_tinggal']?>" placeholder="Jenis Tinggal">
             </div>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
               <button type="submit" class="btn btn-primary">Simpan</button>
             </div>
         </form>
@@ -182,20 +169,20 @@
     </div>
 <?php endforeach;?>
 
-<?php foreach ($guru as $teach2) :?>
+<?php foreach ($siswa as $study2) :?>
     <!-- Modal Edit -->
-    <div class="modal fade" id="deleteModal<?= $teach2['nip']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal<?= $study2['nisn']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Hapus Pendaftar</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/deleteGuru/'.$teach2['nip']);?>" method="POST" class="form">
-            <p>Apakah Anda yakin ingin menghapus guru ini?</p>
+        <form action="<?= base_url('Akademik/deleteSiswa/'.$study2['nisn']);?>" method="POST" class="form">
+            <p>Apakah Anda yakin ingin menghapus data siswa ini?</p>
             <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
               <button type="submit" class="btn btn-danger">Hapus</button>
             </div>
         </form>
@@ -206,7 +193,7 @@
     
 <?php endforeach;?>
 
-<script>
+<!-- <script>
   const provinsi = document.getElementById("provinsi");
 console.log({ provinsi });
 const getPost = async () => {
@@ -227,4 +214,4 @@ const displayOption = async () => {
 };
 
 displayOption();
-</script>
+</script> -->

@@ -1,16 +1,15 @@
-<div class="row">
-        <div class="col-12">
+
           <div class="card mb-4">
             <div class="card-header pb-0">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-12">
                         <h6>Data Guru</h6>
+                      </div>
+                      <div>
+                        <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Guru</button>
                         <?= $this->session->flashdata('message');?>
-                    </div>
-                    <div class="col-md-3">
-                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#addModal">+ Tambah Guru</button>
-                    </div>
-                </div>
+                      </div>
+                  </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
             <div class="container-fluid">
@@ -26,20 +25,24 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php 
-                    $no = 1;
-                    foreach($guru as $teach) : ?>
-                      <tr>
-                         <td><?= $no++;?></td>
-                         <td><?= $teach['nuptk'];?></td>
-                         <td><?= $teach['nama'];?></td>
-                         <td><?= $teach['telp'];?></td>
-                         <td>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#editModal<?= $teach['nuptk']?>" class="btn btn-primary">Edit</a>
-                            <a href="" data-bs-toggle="modal" data-bs-target="#deleteModal<?= $teach['nuptk']?>" class="btn btn-danger">Hapus</a>
-                         </td>
-                      </tr>
-                    <?php endforeach;?>
+                    <?php
+                    if(empty($guru)){ ?>
+                        <td class="text-center" colspan=5>Tidak Ada Data</td>
+                    <?php }else{  
+                      $no = 1;
+                      foreach($guru as $teach) : ?>
+                        <tr>
+                          <td><?= $no++;?></td>
+                          <td><?= $teach['nuptk'];?></td>
+                          <td><?= $teach['nama'];?></td>
+                          <td><?= $teach['telp'];?></td>
+                          <td>
+                              <a href="" data-toggle="modal" data-target="#editModal<?= $teach['nuptk']?>" class="btn btn-primary">Edit</a>
+                              <a href="" data-toggle="modal" data-target="#deleteModal<?= $teach['nuptk']?>" class="btn btn-danger">Hapus</a>
+                          </td>
+                        </tr>
+                      <?php endforeach; 
+                     } ?>
                     </tbody>
                   </table>
                 </div>
@@ -54,7 +57,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Tambah Guru</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
         <form action="<?= base_url('Akademik/addGuru');?>" method="POST" class="form">
@@ -109,7 +112,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Edit Data Guru</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
         <form action="<?= base_url('Akademik/updateGuru/'.$teach1['nuptk']);?>" method="POST" class="form">
@@ -169,7 +172,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Hapus Data Guru</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn btn-close" data-bs-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
         <form action="<?= base_url('Akademik/deleteGuru/'.$teach2['nuptk']);?>" method="POST" class="form">

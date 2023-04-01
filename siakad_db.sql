@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 30, 2023 at 04:51 PM
+-- Generation Time: Apr 01, 2023 at 12:36 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -24,23 +24,32 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `absensi`
+-- Table structure for table `absen_siswa`
 --
 
-CREATE TABLE `absensi` (
-  `id` varchar(11) NOT NULL,
-  `no_identitas` int(20) NOT NULL,
-  `jam_masuk` varchar(20) NOT NULL,
-  `jam_keluar` varchar(20) NOT NULL,
-  `keterangan` enum('Sakit','Izin','Alpa') NOT NULL
+CREATE TABLE `absen_siswa` (
+  `id_absen` int(11) NOT NULL,
+  `nisn` int(11) NOT NULL,
+  `sakit` tinyint(1) NOT NULL,
+  `izin` tinyint(1) NOT NULL,
+  `hadir` tinyint(1) NOT NULL,
+  `tanggal` date NOT NULL,
+  `tanpa_keterangan` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+-- --------------------------------------------------------
+
 --
--- Dumping data for table `absensi`
+-- Table structure for table `jadwal_kegiatan`
 --
 
-INSERT INTO `absensi` (`id`, `no_identitas`, `jam_masuk`, `jam_keluar`, `keterangan`) VALUES
-('1', 51299, '21:31', 'NULL', '');
+CREATE TABLE `jadwal_kegiatan` (
+  `id_jadwal` int(11) NOT NULL,
+  `jadwal` varchar(128) NOT NULL,
+  `harian` varchar(128) NOT NULL,
+  `materi_kegiatan` varchar(128) NOT NULL,
+  `keterangan` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -75,70 +84,25 @@ CREATE TABLE `master_siswa` (
   `agama` varchar(30) NOT NULL,
   `tempat_lahir` varchar(20) NOT NULL,
   `tgl_lahir` date NOT NULL,
-  `kelurahan` varchar(30) NOT NULL,
-  `kecamatan` varchar(30) NOT NULL,
-  `kota_kab` varchar(30) NOT NULL,
-  `provinsi` varchar(30) NOT NULL,
-  `kode_pos` int(7) NOT NULL,
-  `ayah` varchar(30) NOT NULL,
-  `pekerjaan_ayah` varchar(30) NOT NULL,
-  `ibu` varchar(30) NOT NULL,
-  `pekerjaan_ibu` varchar(30) NOT NULL,
-  `wali` varchar(30) NOT NULL,
-  `pekerjaan_wali` varchar(30) NOT NULL,
-  `telp_ayah` int(13) NOT NULL,
-  `telp_ibu` int(13) NOT NULL,
-  `telp_wali` int(13) NOT NULL,
-  `telp_siswa` int(13) NOT NULL,
-  `tanggal_masuk` date NOT NULL,
-  `status` int(2) NOT NULL,
-  `foto` varchar(128) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `master_siswa`
---
-
-INSERT INTO `master_siswa` (`nisn`, `nama`, `alamat`, `jk`, `agama`, `tempat_lahir`, `tgl_lahir`, `kelurahan`, `kecamatan`, `kota_kab`, `provinsi`, `kode_pos`, `ayah`, `pekerjaan_ayah`, `ibu`, `pekerjaan_ibu`, `wali`, `pekerjaan_wali`, `telp_ayah`, `telp_ibu`, `telp_wali`, `telp_siswa`, `tanggal_masuk`, `status`, `foto`) VALUES
-(2147483647, '', '', '', '', '', '0000-00-00', '', '', '', '', 0, '', '', '', '', '', '', 0, 0, 0, 0, '0000-00-00', 0, '');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `pembayaran`
---
-
-CREATE TABLE `pembayaran` (
-  `id` int(11) NOT NULL,
-  `nisn` int(20) NOT NULL,
-  `rp_bayar` int(11) NOT NULL,
-  `status` int(10) NOT NULL
+  `tahun_ajaran` int(20) NOT NULL,
+  `alat_transportasi` varchar(128) NOT NULL,
+  `jenis_tinggal` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pendaftar`
+-- Table structure for table `raport`
 --
 
-CREATE TABLE `pendaftar` (
-  `id` int(11) NOT NULL,
-  `nisn` int(20) NOT NULL,
-  `nama` varchar(128) NOT NULL,
-  `jk` enum('L','P') NOT NULL,
-  `tempat_lahir` varchar(128) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
-  `agama` varchar(128) NOT NULL,
-  `no_telp` varchar(20) NOT NULL,
-  `email` varchar(128) NOT NULL
+CREATE TABLE `raport` (
+  `id_raport` int(11) NOT NULL,
+  `id_absen` int(11) NOT NULL,
+  `keterampilan` varchar(128) NOT NULL,
+  `sikap` varchar(128) NOT NULL,
+  `akademik` varchar(128) NOT NULL,
+  `catatan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `pendaftar`
---
-
-INSERT INTO `pendaftar` (`id`, `nisn`, `nama`, `jk`, `tempat_lahir`, `tanggal_lahir`, `agama`, `no_telp`, `email`) VALUES
-(8, 749829, 'Inwan Anwar Solihudin', 'L', 'Karawang', '1999-12-05', 'Islam', '087778815677', 'inwan.up3@pln.co.id');
 
 -- --------------------------------------------------------
 
@@ -168,10 +132,17 @@ INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`) VALUES
 --
 
 --
--- Indexes for table `absensi`
+-- Indexes for table `absen_siswa`
 --
-ALTER TABLE `absensi`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `absen_siswa`
+  ADD PRIMARY KEY (`id_absen`),
+  ADD KEY `nisn` (`nisn`);
+
+--
+-- Indexes for table `jadwal_kegiatan`
+--
+ALTER TABLE `jadwal_kegiatan`
+  ADD PRIMARY KEY (`id_jadwal`);
 
 --
 -- Indexes for table `master_guru`
@@ -186,18 +157,11 @@ ALTER TABLE `master_siswa`
   ADD PRIMARY KEY (`nisn`);
 
 --
--- Indexes for table `pembayaran`
+-- Indexes for table `raport`
 --
-ALTER TABLE `pembayaran`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `nisn` (`nisn`);
-
---
--- Indexes for table `pendaftar`
---
-ALTER TABLE `pendaftar`
-  ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `nisn` (`nisn`);
+ALTER TABLE `raport`
+  ADD PRIMARY KEY (`id_raport`),
+  ADD KEY `id_absen` (`id_absen`);
 
 --
 -- Indexes for table `users`
@@ -210,16 +174,22 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `pembayaran`
+-- AUTO_INCREMENT for table `absen_siswa`
 --
-ALTER TABLE `pembayaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `absen_siswa`
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `pendaftar`
+-- AUTO_INCREMENT for table `jadwal_kegiatan`
 --
-ALTER TABLE `pendaftar`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+ALTER TABLE `jadwal_kegiatan`
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `raport`
+--
+ALTER TABLE `raport`
+  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -232,10 +202,16 @@ ALTER TABLE `users`
 --
 
 --
--- Constraints for table `pembayaran`
+-- Constraints for table `absen_siswa`
 --
-ALTER TABLE `pembayaran`
-  ADD CONSTRAINT `pembayaran_ibfk_1` FOREIGN KEY (`nisn`) REFERENCES `master_siswa` (`nisn`);
+ALTER TABLE `absen_siswa`
+  ADD CONSTRAINT `absen_siswa_ibfk_1` FOREIGN KEY (`nisn`) REFERENCES `master_siswa` (`nisn`);
+
+--
+-- Constraints for table `raport`
+--
+ALTER TABLE `raport`
+  ADD CONSTRAINT `raport_ibfk_1` FOREIGN KEY (`id_absen`) REFERENCES `absen_siswa` (`id_absen`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
