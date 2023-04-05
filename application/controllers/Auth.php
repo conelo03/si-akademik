@@ -15,25 +15,39 @@ class Auth extends CI_Controller {
         ];
         $validate = $this->Auth_Model->login($request['username']);
         if($validate){
-            if($validate['role'] == 1){
-                redirect('Auth/dashboard_users');
-            }else if($validate['role'] == 2){
-                echo 'Selamat Datang Guru';
+            if($request['password'] === $validate['password']){
+                redirect('Auth/dashboard_users/'.$validate['role']);
             }else{
-                echo 'Selamat Datang Siswa';
+                echo 'Password salah!';
             }
         }else{
             echo 'user tidak terdaftar';
         }
     }
 
-    public function dashboard_users(){
-        $data = [
-            'title' => 'Dashboard Akademik',
-            'content' => 'akademik/dashboard',
-            'role' => 'Akademik',
-            'count_guru' => $this->Master_Model->count('master_guru')
-        ];
+    public function dashboard_users($role){
+        if($role == 1){
+            $data = [
+                'title' => 'Dashboard Admin',
+                'content' => 'akademik/dashboard',
+                'role' => 'Admin',
+                'count_guru' => $this->Master_Model->count('master_guru')
+            ];
+        }else if($role == 2){
+            $data = [
+                'title' => 'Dashboard Guru',
+                'content' => 'guru/dashboard',
+                'role' => 'Guru',
+                'count_siswa' => $this->Master_Model->count('master_siswa')
+            ];
+        }else{
+            $data = [
+                'title' => 'Dashboard Ortu',
+                'content' => 'ortu/dashboard',
+                'role' => 'Ortu',
+                // 'count_guru' => $this->Master_Model->count('master_guru')
+            ];
+        }
         $this->load->view('dashboard_template/main',$data);
     }
 
