@@ -107,5 +107,46 @@ public function updateSiswa($id){
     return redirect('Akademik/master_siswa');
   }
 
+  public function kegiatan(){
+    $data = [
+      'title' => 'Kegiatan',
+      'role' => 'Akademik',
+      'content' => 'akademik/kegiatan',
+      'kegiatan' => $this->Master_Model->get('jadwal_kegiatan')
+  ];
+  $this->load->view('dashboard_template/main',$data);
+  }
+
+  public function addKegiatan(){
+    $request = [
+        'jadwal'=> $this->input->post('jadwal'),
+        'harian'=> $this->input->post('harian'),
+        'materi_kegiatan'=> $this->input->post('materi'),
+        'keterangan'=> $this->input->post('keterangan'),
+    ];
+    $this->Master_Model->add($request,'jadwal_kegiatan');
+    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah kegiatan!</div>');
+  return redirect('Akademik/kegiatan');
+}
+
+public function updateKegiatan($id){
+  $request = [
+    'jadwal'=> $this->input->post('jadwal'),
+    'harian'=> $this->input->post('harian'),
+    'materi_kegiatan'=> $this->input->post('materi'),
+    'keterangan'=> $this->input->post('keterangan'),
+];
+    $this->Master_Model->update('id_jadwal','jadwal_kegiatan',$request,$id);
+    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah kegiatan!</div>');
+    return redirect('Akademik/kegiatan');
+  }
+
+  public function deleteKegiatan($id){ 
+    $this->Master_Model->delete('id_jadwal','jadwal_kegiatan',$id);
+    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus kegiatan!</div>');
+    return redirect('Akademik/kegiatan');
+  }
+
+
 
 }

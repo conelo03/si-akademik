@@ -140,6 +140,10 @@
                 <li><a class="nav-link" href="<?= base_url('Akademik/master_guru')?>">Data Guru</a></li>
               </ul>
             </li>
+            <li>
+              <a href="<?= base_url('Akademik/kegiatan')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
+            </li>
+
           </ul>     
         </aside>
       </div>
