@@ -6,9 +6,11 @@
                     <div class="col-md-12">
                         <h6>Data Siswa</h6>
                       </div>
-                      <div class="col">
-                        <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Siswa</button>
-                        <?= $this->session->flashdata('message');?>
+                      <?php if($role==='Admin'){?>
+                        <div class="col">
+                          <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Siswa</button>
+                          <?= $this->session->flashdata('message');?>
+                      <?php }?>
                     </div>
                 </div>
             </div>

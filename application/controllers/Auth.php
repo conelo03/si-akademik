@@ -30,21 +30,21 @@ class Auth extends CI_Controller {
             $data = [
                 'title' => 'Dashboard Admin',
                 'content' => 'akademik/dashboard',
-                'role' => 'Admin',
+                'role' => $role,
                 'count_guru' => $this->Master_Model->count('master_guru')
             ];
         }else if($role == 2){
             $data = [
                 'title' => 'Dashboard Guru',
                 'content' => 'guru/dashboard',
-                'role' => 'Guru',
+                'role' => $role,
                 'count_siswa' => $this->Master_Model->count('master_siswa')
             ];
         }else{
             $data = [
                 'title' => 'Dashboard Ortu',
                 'content' => 'ortu/dashboard',
-                'role' => 'Ortu',
+                'role' => $role,
                 // 'count_guru' => $this->Master_Model->count('master_guru')
             ];
         }

@@ -55,10 +55,10 @@ class Akademik extends CI_Controller {
     return redirect('Akademik/master_guru');
   }
 
-  public function master_siswa(){
+  public function master_siswa($role){
     $data = [
       'title' => 'Data Siswa',
-      'role' => 'Akademik',
+      'role' => $role,
       'content' => 'akademik/siswa',
       'siswa' => $this->Master_Model->get('master_siswa')
   ];

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 01, 2023 at 12:36 PM
+-- Generation Time: Apr 09, 2023 at 03:43 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -30,12 +30,17 @@ SET time_zone = "+00:00";
 CREATE TABLE `absen_siswa` (
   `id_absen` int(11) NOT NULL,
   `nisn` int(11) NOT NULL,
-  `sakit` tinyint(1) NOT NULL,
-  `izin` tinyint(1) NOT NULL,
-  `hadir` tinyint(1) NOT NULL,
-  `tanggal` date NOT NULL,
-  `tanpa_keterangan` tinyint(1) NOT NULL
+  `kehadiran` enum('Hadir','Tanpa Keterangan','Izin','Sakit') NOT NULL,
+  `tanggal` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `absen_siswa`
+--
+
+INSERT INTO `absen_siswa` (`id_absen`, `nisn`, `kehadiran`, `tanggal`) VALUES
+(3, 3231, 'Izin', '2023-04-09'),
+(6, 323111, 'Hadir', '2023-04-09');
 
 -- --------------------------------------------------------
 
@@ -88,6 +93,14 @@ CREATE TABLE `master_siswa` (
   `alat_transportasi` varchar(128) NOT NULL,
   `jenis_tinggal` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `master_siswa`
+--
+
+INSERT INTO `master_siswa` (`nisn`, `nama`, `alamat`, `jk`, `agama`, `tempat_lahir`, `tgl_lahir`, `tahun_ajaran`, `alat_transportasi`, `jenis_tinggal`) VALUES
+(3231, 'Anggi', 'FDAF', 'L', 'FDASF', 'FDSAF', '2023-04-04', 342332, 'FDSFA', 'DFAF'),
+(323111, 'Abdul', 'FDAF', 'P', 'FDASF', 'FDSAF', '2023-04-04', 342332, 'FDSFA', 'DFAF');
 
 -- --------------------------------------------------------
 
@@ -177,13 +190,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absen_siswa`
 --
 ALTER TABLE `absen_siswa`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `jadwal_kegiatan`
 --
 ALTER TABLE `jadwal_kegiatan`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `raport`

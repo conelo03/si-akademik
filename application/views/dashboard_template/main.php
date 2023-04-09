@@ -106,7 +106,15 @@
         <ul class="navbar-nav navbar-right">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
             <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
-            <div class="d-sm-none d-lg-inline-block">Hi, Ujang Maman</div></a>
+            <div class="d-sm-none d-lg-inline-block">Hi, <?php
+            if ($role == 1){
+              echo 'Admin';
+            }else if ($role == 2){
+              echo 'Guru';
+            }else{
+              echo 'Orang Tua';
+            }
+            ?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
               <a href="features-profile.html" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
@@ -130,19 +138,31 @@
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li>
-              <a href="<?= base_url('Auth/dashboard_users')?>" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="<?= base_url('Auth/dashboard_users/'.$role)?>" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
-
-            <li class="dropdown">
-              <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Master</span></a>
-              <ul class="dropdown-menu">
-                <li><a class="nav-link" href="<?= base_url('Akademik/master_siswa')?>">Data Siswa</a></li>
-                <li><a class="nav-link" href="<?= base_url('Akademik/master_guru')?>">Data Guru</a></li>
-              </ul>
+        <?php if($role==1){?>
+          <li class="dropdown">
+            <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Manajemen Data</span></a>
+            <ul class="dropdown-menu">
+              <li><a class="nav-link" href="<?= base_url('Akademik/master_siswa/')?>">Data Siswa</a></li>
+              <li><a class="nav-link" href="<?= base_url('Akademik/master_guru')?>">Data Guru</a></li>
+            </ul>
+          </li>
+          <?php }elseif($role==2){?>
+            <li>
+              <a href="<?= base_url('Guru/absenSiswa/')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
             </li>
             <li>
               <a href="<?= base_url('Akademik/kegiatan')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
             </li>
+          <?php }elseif($role==3){?>
+            <li>
+              <a href="<?= base_url('Akademik/master_siswa')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
+            </li>
+            <li>
+              <a href="<?= base_url('Akademik/kegiatan')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
+            </li>
+          <?php }?>
 
           </ul>     
         </aside>
