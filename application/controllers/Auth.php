@@ -31,21 +31,27 @@ class Auth extends CI_Controller {
                 'title' => 'Dashboard Admin',
                 'content' => 'akademik/dashboard',
                 'role' => $role,
-                'count_guru' => $this->Master_Model->count('master_guru')
+                'count_siswa' => $this->Master_Model->count('master_siswa'),
+                'count_lk' => $this->Master_Model->countBy('master_siswa','jk','L'),
+                'count_pr' => $this->Master_Model->countBy('master_siswa','jk','P')
             ];
         }else if($role == 2){
             $data = [
                 'title' => 'Dashboard Guru',
                 'content' => 'guru/dashboard',
                 'role' => $role,
-                'count_siswa' => $this->Master_Model->count('master_siswa')
+                'count_siswa' => $this->Master_Model->count('master_siswa'),
+                'count_lk' => $this->Master_Model->countBy('master_siswa','jk','L'),
+                'count_pr' => $this->Master_Model->countBy('master_siswa','jk','P')
             ];
         }else{
             $data = [
                 'title' => 'Dashboard Ortu',
                 'content' => 'ortu/dashboard',
                 'role' => $role,
-                // 'count_guru' => $this->Master_Model->count('master_guru')
+                'count_siswa' => $this->Master_Model->count('master_siswa'),
+                'count_lk' => $this->Master_Model->countBy('master_siswa','jk','L'),
+                'count_pr' => $this->Master_Model->countBy('master_siswa','jk','P')
             ];
         }
         $this->load->view('dashboard_template/main',$data);

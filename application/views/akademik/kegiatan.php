@@ -7,8 +7,12 @@
                         <h6>Kegiatan Siswa</h6>
                       </div>
                       <div class="col">
-                        <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Kegiatan</button>
-                        <?= $this->session->flashdata('message');?>
+                        <?php if($role == '1') {?>
+                          <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Kegiatan</button>
+                        <?php }else{?>
+
+                          <?php }?>
+                          <?= $this->session->flashdata('message');?>
                     </div>
                 </div>
             </div>

@@ -23,4 +23,8 @@ class Master_Model extends CI_Model {
     public function count($table){
         return $this->db->get($table)->num_rows();
     }
+
+    public function countBy($table,$by,$val){
+        return $this->db->get_where($table,[$by => $val])->num_rows();
+    }
 }

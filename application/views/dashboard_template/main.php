@@ -152,17 +152,14 @@
             <li>
               <a href="<?= base_url('Guru/absenSiswa/')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
             </li>
-            <li>
-              <a href="<?= base_url('Akademik/kegiatan')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
-            </li>
           <?php }elseif($role==3){?>
             <li>
               <a href="<?= base_url('Akademik/master_siswa')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
             </li>
+            <?php }?>
             <li>
-              <a href="<?= base_url('Akademik/kegiatan')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
+              <a href="<?= base_url('Akademik/kegiatan/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
             </li>
-          <?php }?>
 
           </ul>     
         </aside>

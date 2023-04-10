@@ -107,10 +107,10 @@ public function updateSiswa($id){
     return redirect('Akademik/master_siswa');
   }
 
-  public function kegiatan(){
+  public function kegiatan($role){
     $data = [
       'title' => 'Kegiatan',
-      'role' => 'Akademik',
+      'role' => $role,
       'content' => 'akademik/kegiatan',
       'kegiatan' => $this->Master_Model->get('jadwal_kegiatan')
   ];
