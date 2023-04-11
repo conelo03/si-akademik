@@ -75,14 +75,14 @@
                                             <option value="<?= $abs['nisn']?>"><?= $abs['nama'];?></option>
                                     <?php endforeach;?>
                                 </select>
+                        <input type=checkbox id="kehadiran" name="kehadiran" value="Hadir">
                          <label class="mr-3">Hadir</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" name="kehadiran" value="Hadir">
+                         <input type=checkbox id="kehadiran" name="kehadiran" value="Izin">
                          <label class="mr-3">Izin</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" name="kehadiran" value="Izin">
+                         <input type=checkbox id="kehadiran" name="kehadiran" value="Sakit">
                          <label class="mr-3">Sakit</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" name="kehadiran" value="Sakit">
+                         <input type=checkbox id="kehadiran" name="kehadiran" value="Tanpa Keterangan">
                          <label class="mr-3">Tanpa Keterangan</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" name="kehadiran" value="Tanpa Keterangan">
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

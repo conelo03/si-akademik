@@ -14,7 +14,7 @@
             <div class="card-body px-0 pt-0 pb-2">
             <div class="container-fluid">
                 <div class="table-responsive p-0">
-                  <table class="table align-items-center table-striped mb-0" id="pendaftaran">
+                  <table class="table table-striped table-bordered" id= "tb">
                     <thead>
                       <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
@@ -25,10 +25,7 @@
                       </tr>
                     </thead>
                     <tbody>
-                    <?php
-                    if(empty($guru)){ ?>
-                        <td class="text-center" colspan=5>Tidak Ada Data</td>
-                    <?php }else{  
+                    <?php 
                       $no = 1;
                       foreach($guru as $teach) : ?>
                         <tr>
@@ -41,8 +38,7 @@
                               <a href="" data-toggle="modal" data-target="#deleteModal<?= $teach['nuptk']?>" class="btn btn-danger">Hapus</a>
                           </td>
                         </tr>
-                      <?php endforeach; 
-                     } ?>
+                      <?php endforeach; ?>
                     </tbody>
                   </table>
                 </div>
@@ -65,9 +61,6 @@
                 <input type="number" class="form-control" name="nuptk" placeholder="NUPTK">
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" name="nik" placeholder="NIK">
-            </div>
-            <div class="form-group">
                 <input type="text" class="form-control" name="nama" placeholder="Nama">
             </div>
             <div class="form-group">
@@ -85,9 +78,6 @@
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="jabatan" placeholder="Jabatan">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="masa_kerja" placeholder="Masa Kerja">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="pendidikan" placeholder="Pendidikan Terakhir">
@@ -120,9 +110,6 @@
                 <input type="number" class="form-control" value="<?= $teach1['nuptk']?>" name="nuptk" placeholder="NUPTK">
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" value="<?= $teach1['nik']?>" name="nik" placeholder="NIK">
-            </div>
-            <div class="form-group">
                 <input type="text" class="form-control" value="<?= $teach1['nama']?>" name="nama" placeholder="Nama">
             </div>
             <div class="form-group">
@@ -144,9 +131,6 @@
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" value="<?= $teach1['jabatan']?>" name="jabatan" placeholder="Jabatan">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="masa_kerja" value="<?= $teach1['masa_kerja']?>" placeholder="Masa Kerja">
             </div>
             <div class="form-group">
                 <input type="text" class="form-control" name="pendidikan" value="<?= $teach1['pendidikan_terakhir']?>" placeholder="Pendidikan Terakhir">

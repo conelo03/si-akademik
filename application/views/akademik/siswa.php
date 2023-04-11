@@ -6,7 +6,7 @@
                     <div class="col-md-12">
                         <h6>Data Siswa</h6>
                       </div>
-                      <?php if($role==='Admin'){?>
+                      <?php if($role== 1){?>
                         <div class="col">
                           <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Siswa</button>
                           <?= $this->session->flashdata('message');?>
@@ -17,7 +17,7 @@
             <div class="card-body px-0 pt-0 pb-2">
             <div class="container-fluid">
                 <div class="table-responsive p-0">
-                  <table class="table align-items-center table-striped mb-0" id="pendaftaran">
+                  <table class="table table-striped table-bordered" id="tb">
                     <thead>
                       <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
@@ -29,9 +29,6 @@
                     </thead>
                     <tbody>
                     <?php
-                    if(empty($siswa)){ ?>
-                        <td class="text-center" colspan=5>Tidak Ada Data</td>
-                    <?php }else{ 
                     $no = 1;
                     foreach($siswa as $study) : ?>
                       <tr>
@@ -49,7 +46,6 @@
                          </td>
                       </tr>
                     <?php endforeach;
-                    }
                     ?>
                     </tbody>
                   </table>

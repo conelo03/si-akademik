@@ -19,6 +19,7 @@
   <!-- Template CSS -->
   <link rel="stylesheet" href="<?= base_url()?>assets/css/style.css">
   <link rel="stylesheet" href="<?= base_url()?>assets/css/components.css">
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/dataTables.bootstrap4.min.css">
 <!-- Start GA -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
 <script>
@@ -133,7 +134,7 @@
             <a href="index.html">Siakad</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">SIA</a>
           </div>
           <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -144,8 +145,8 @@
           <li class="dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Manajemen Data</span></a>
             <ul class="dropdown-menu">
-              <li><a class="nav-link" href="<?= base_url('Akademik/master_siswa/')?>">Data Siswa</a></li>
-              <li><a class="nav-link" href="<?= base_url('Akademik/master_guru')?>">Data Guru</a></li>
+              <li><a class="nav-link" href="<?= base_url('Akademik/master_siswa/'.$role)?>">Data Siswa</a></li>
+              <li><a class="nav-link" href="<?= base_url('Akademik/master_guru/'.$role)?>">Data Guru</a></li>
             </ul>
           </li>
           <?php }elseif($role==2){?>
@@ -195,7 +196,13 @@
 
   <!-- Page Specific JS File -->
   <script src="<?= base_url()?>assets/js/page/index.js"></script>
-  
+  <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
+  <script src="https://cdn.datatables.net/1.13.4/js/dataTables.bootstrap4.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $('#tb').DataTable();
+    });
+  </script>
   <!-- Template JS File -->
   <script src="<?= base_url()?>assets/js/scripts.js"></script>
   <script src="<?= base_url()?>assets/js/custom.js"></script>

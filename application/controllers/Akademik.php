@@ -3,10 +3,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Akademik extends CI_Controller {
 
-    public function master_guru(){
+    public function master_guru($role){
       $data = [
         'title' => 'Data Guru',
-        'role' => 'Akademik',
+        'role' => $role,
         'content' => 'akademik/guru',
         'guru' => $this->Master_Model->get('master_guru')
     ];
@@ -16,43 +16,39 @@ class Akademik extends CI_Controller {
     public function addGuru(){
       $request = [
           'nuptk'=> $this->input->post('nuptk'),
-          'nik'=> $this->input->post('nik'),
           'nama'=> $this->input->post('nama'),
           'jk'=> $this->input->post('jk'),
           'tempat_lahir'=> $this->input->post('tempat'),
           'tgl_lahir'=> $this->input->post('tgl_lahir'),
           'jabatan'=> $this->input->post('jabatan'),
-          'masa_kerja'=> $this->input->post('masa_kerja'),
           'pendidikan_terakhir'=> $this->input->post('pendidikan'),
           'telp'=> $this->input->post('telp')
       ];
       $this->Master_Model->add($request,'master_guru');
       $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah data guru!</div>');
-    return redirect('Akademik/master_guru');
+    return redirect('Akademik/master_guru/1');
   }
 
   public function updateGuru($id){
     $request = [
       'nuptk'=> $this->input->post('nuptk'),
-      'nik'=> $this->input->post('nik'),
       'nama'=> $this->input->post('nama'),
       'jk'=> $this->input->post('jk'),
       'tempat_lahir'=> $this->input->post('tempat'),
       'tgl_lahir'=> $this->input->post('tgl_lahir'),
       'jabatan'=> $this->input->post('jabatan'),
-      'masa_kerja'=> $this->input->post('masa_kerja'),
       'pendidikan_terakhir'=> $this->input->post('pendidikan'),
       'telp'=> $this->input->post('telp')
     ];
     $this->Master_Model->update(['nuptk'=>$id],'master_guru',$request,$id);
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah data guru!</div>');
-  return redirect('Akademik/master_guru');
+  return redirect('Akademik/master_guru/1');
 }
 
   public function deleteGuru($id){ 
     $this->Master_Model->delete('nuptk','master_guru',$id);
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus data guru!</div>');
-    return redirect('Akademik/master_guru');
+    return redirect('Akademik/master_guru/1');
   }
 
   public function master_siswa($role){
@@ -80,7 +76,7 @@ class Akademik extends CI_Controller {
     ];
     $this->Master_Model->add($request,'master_siswa');
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah data siswa!</div>');
-  return redirect('Akademik/master_siswa');
+  return redirect('Akademik/master_siswa/1');
 }
 
 public function updateSiswa($id){
@@ -98,13 +94,13 @@ public function updateSiswa($id){
 ];
     $this->Master_Model->update('nisn','master_siswa',$request,$id);
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah data siswa!</div>');
-    return redirect('Akademik/master_siswa');
+    return redirect('Akademik/master_siswa/1');
   }
 
   public function deleteSiswa($id){ 
     $this->Master_Model->delete('nisn','master_siswa',$id);
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus data siswa!</div>');
-    return redirect('Akademik/master_siswa');
+    return redirect('Akademik/master_siswa/1');
   }
 
   public function kegiatan($role){

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 09, 2023 at 03:43 PM
+-- Generation Time: Apr 11, 2023 at 04:12 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -39,8 +39,8 @@ CREATE TABLE `absen_siswa` (
 --
 
 INSERT INTO `absen_siswa` (`id_absen`, `nisn`, `kehadiran`, `tanggal`) VALUES
-(3, 3231, 'Izin', '2023-04-09'),
-(6, 323111, 'Hadir', '2023-04-09');
+(6, 323111, 'Izin', '2023-04-11'),
+(8, 3231, 'Tanpa Keterangan', '2023-04-10');
 
 -- --------------------------------------------------------
 
@@ -56,6 +56,13 @@ CREATE TABLE `jadwal_kegiatan` (
   `keterangan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `jadwal_kegiatan`
+--
+
+INSERT INTO `jadwal_kegiatan` (`id_jadwal`, `jadwal`, `harian`, `materi_kegiatan`, `keterangan`) VALUES
+(2, 'Oke', 'Iya', 'Kepemimpinan', 'Sudah dilaksanakan');
+
 -- --------------------------------------------------------
 
 --
@@ -64,16 +71,21 @@ CREATE TABLE `jadwal_kegiatan` (
 
 CREATE TABLE `master_guru` (
   `nuptk` varchar(30) NOT NULL,
-  `nik` varchar(20) NOT NULL,
   `nama` varchar(128) NOT NULL,
   `jk` enum('L','P') NOT NULL,
   `tempat_lahir` varchar(30) NOT NULL,
   `tgl_lahir` date NOT NULL,
   `jabatan` varchar(30) NOT NULL,
-  `masa_kerja` varchar(20) NOT NULL,
   `pendidikan_terakhir` varchar(20) NOT NULL,
   `telp` varchar(13) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `master_guru`
+--
+
+INSERT INTO `master_guru` (`nuptk`, `nama`, `jk`, `tempat_lahir`, `tgl_lahir`, `jabatan`, `pendidikan_terakhir`, `telp`) VALUES
+('909', 'Indrawan Nugroho', 'L', 'Solo', '1994-12-12', 'Kepsek', 'S1', '087776671234');
 
 -- --------------------------------------------------------
 
@@ -99,8 +111,12 @@ CREATE TABLE `master_siswa` (
 --
 
 INSERT INTO `master_siswa` (`nisn`, `nama`, `alamat`, `jk`, `agama`, `tempat_lahir`, `tgl_lahir`, `tahun_ajaran`, `alat_transportasi`, `jenis_tinggal`) VALUES
+(123, 'IKLFJS', 'JFDLKSJ', 'L', 'DKLSF', 'FLKJ', '0000-00-00', 2018, 'Becak', 'Kost'),
 (3231, 'Anggi', 'FDAF', 'L', 'FDASF', 'FDSAF', '2023-04-04', 342332, 'FDSFA', 'DFAF'),
-(323111, 'Abdul', 'FDAF', 'P', 'FDASF', 'FDSAF', '2023-04-04', 342332, 'FDSFA', 'DFAF');
+(54321, 'Inwan Solihudin', 'Purwakarta', 'L', 'Islam', 'Karawang', '1999-12-05', 2018, 'Becak', 'Kost'),
+(323111, 'Abdul', 'FDAF', 'P', 'FDASF', 'FDSAF', '2023-04-04', 342332, 'FDSFA', 'DFAF'),
+(320943207, 'Andromeda', 'Jl. Kuningan Barat 3, RT 07/003, Kelurahan Kuningan Barat, Jakarta Selatan 12710', 'L', 'Islam', 'Yogyakarta', '1998-12-05', 2018, 'Becak', 'Kost'),
+(320943209, 'Andrew', 'Jl. Kuningan Barat 3, RT 07/003, Kelurahan Kuningan Barat, Jakarta Selatan 12710', 'L', 'Islam', 'Yogyakarta', '1998-12-05', 2018, 'Becak', 'Kost');
 
 -- --------------------------------------------------------
 
@@ -190,13 +206,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absen_siswa`
 --
 ALTER TABLE `absen_siswa`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `jadwal_kegiatan`
 --
 ALTER TABLE `jadwal_kegiatan`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `raport`
