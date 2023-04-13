@@ -167,12 +167,12 @@
       </div>
 
       <!-- Main Content -->
-      <div class="main-content">
+      <div class="main-content" style="margin-bottom:100px;">
         <?php $this->load->view($content);?>
       </div>
-      <footer class="main-footer fixed-bottom">
-        <div class="footer-left">
-          Copyright &copy; <?= date('Y'); ?> <div class="bullet"></div> Design By <a href="https://nauval.in/">Muhamad Nauval Azhar</a>
+      <footer class="main-footer bg-primary fixed-bottom">
+        <div class="footer-left text-light">
+          Copyright &copy; <?= date('Y'); ?> <div class="bullet"></div> Design By <a class="text-light" href="https://nauval.in/">TK Santa Eka Puhu</a>
         </div>
       </footer>
     </div>
