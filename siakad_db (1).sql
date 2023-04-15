@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 11, 2023 at 04:12 PM
+-- Generation Time: Apr 15, 2023 at 10:30 AM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -49,19 +49,19 @@ INSERT INTO `absen_siswa` (`id_absen`, `nisn`, `kehadiran`, `tanggal`) VALUES
 --
 
 CREATE TABLE `jadwal_kegiatan` (
-  `id_jadwal` int(11) NOT NULL,
-  `jadwal` varchar(128) NOT NULL,
-  `harian` varchar(128) NOT NULL,
-  `materi_kegiatan` varchar(128) NOT NULL,
-  `keterangan` varchar(128) NOT NULL
+  `id_kegiatan` int(11) NOT NULL,
+  `nama_kegiatan` varchar(128) NOT NULL,
+  `foto_kegiatan` varchar(128) NOT NULL,
+  `deskripsi` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `jadwal_kegiatan`
 --
 
-INSERT INTO `jadwal_kegiatan` (`id_jadwal`, `jadwal`, `harian`, `materi_kegiatan`, `keterangan`) VALUES
-(2, 'Oke', 'Iya', 'Kepemimpinan', 'Sudah dilaksanakan');
+INSERT INTO `jadwal_kegiatan` (`id_kegiatan`, `nama_kegiatan`, `foto_kegiatan`, `deskripsi`) VALUES
+(5, 'Seminar Endgame with Gita Wirjawan', 'ENDGAME2.png', 'Membahas masa depan manusia'),
+(6, 'Seminar Endgame with Gita Wirjawan', 'ENDGAME3.png', 'Membahas masa depan manusia');
 
 -- --------------------------------------------------------
 
@@ -121,6 +121,45 @@ INSERT INTO `master_siswa` (`nisn`, `nama`, `alamat`, `jk`, `agama`, `tempat_lah
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pengembangan`
+--
+
+CREATE TABLE `pengembangan` (
+  `id_pengembangan` int(11) NOT NULL,
+  `nama_pengembangan` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `pengembangan`
+--
+
+INSERT INTO `pengembangan` (`id_pengembangan`, `nama_pengembangan`) VALUES
+(1, 'Agama & Moral'),
+(2, 'Sosial & Emosional'),
+(3, 'Fisik & Motorik'),
+(4, 'Kognitif'),
+(5, 'Bahasa'),
+(6, 'Seni');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `penilaian`
+--
+
+CREATE TABLE `penilaian` (
+  `id` int(11) NOT NULL,
+  `aspek` varchar(128) NOT NULL,
+  `nilai` varchar(128) NOT NULL,
+  `deskripsi` text NOT NULL,
+  `sikap_spiritual` text NOT NULL,
+  `sikap_sosial` text NOT NULL,
+  `saran` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `raport`
 --
 
@@ -171,7 +210,7 @@ ALTER TABLE `absen_siswa`
 -- Indexes for table `jadwal_kegiatan`
 --
 ALTER TABLE `jadwal_kegiatan`
-  ADD PRIMARY KEY (`id_jadwal`);
+  ADD PRIMARY KEY (`id_kegiatan`);
 
 --
 -- Indexes for table `master_guru`
@@ -184,6 +223,12 @@ ALTER TABLE `master_guru`
 --
 ALTER TABLE `master_siswa`
   ADD PRIMARY KEY (`nisn`);
+
+--
+-- Indexes for table `pengembangan`
+--
+ALTER TABLE `pengembangan`
+  ADD PRIMARY KEY (`id_pengembangan`);
 
 --
 -- Indexes for table `raport`
@@ -212,7 +257,13 @@ ALTER TABLE `absen_siswa`
 -- AUTO_INCREMENT for table `jadwal_kegiatan`
 --
 ALTER TABLE `jadwal_kegiatan`
-  MODIFY `id_jadwal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `pengembangan`
+--
+ALTER TABLE `pengembangan`
+  MODIFY `id_pengembangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `raport`
