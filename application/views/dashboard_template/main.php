@@ -161,12 +161,12 @@
           </li>
           <?php }elseif($role==2){?>
             <li>
-              <a href="<?= base_url('Rapor/absenSiswa/')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
+              <a href="<?= base_url('Guru/absenSiswa/')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
               <li>
                 <a href="<?= base_url('Akademik/master_siswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
             </li>
             <li>
-                <a href="<?= base_url('Rapor/raporSiswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Rapor</span></a>
+                <a href="<?= base_url('Guru/raporSiswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Rapor</span></a>
             </li>
             </li>
           <?php }elseif($role==3){?>

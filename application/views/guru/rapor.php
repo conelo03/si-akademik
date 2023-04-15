@@ -57,7 +57,7 @@
                       <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('Rapor/inputNilai/')?>" method="POST">
+                        <form action="<?= base_url('Guru/inputNilai/')?>" method="POST">
                             <div class="form-group">
                                     <input type="text" class="form-control" name="nama" placeholder="Nama">
                             </div>
@@ -138,7 +138,7 @@
         <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-                <form action="<?= base_url('Rapor/koreksiAbsen/'.$attd['nisn'])?>" method="POST">
+                <form action="<?= base_url('Guru/koreksiAbsen/'.$attd['nisn'])?>" method="POST">
                     <div class="form-group">
 
                     </div>
