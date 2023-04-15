@@ -18,38 +18,23 @@
             </div>
             <div class="card-body px-0 pt-0 pb-2">
             <div class="container-fluid">
-                <div class="table-responsive p-0">
-                  <table class="table align-items-center table-striped mb-0" id="pendaftaran">
-                    <thead>
-                      <tr>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
-                        <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Jadwal</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Harian</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                    <?php
-                    if(empty($kegiatan)){ ?>
-                        <td class="text-center" colspan=5>Tidak Ada Data</td>
-                    <?php }else{ 
-                    $no = 1;
-                    foreach($kegiatan as $act) : ?>
-                      <tr>
-                         <td><?= $no++;?></td>
-                         <td><?= $act['jadwal'];?></td>
-                         <td><?= $act['harian'];?></td>
-                         <td>
-                            <a href="" data-toggle="modal" data-target="#editModal<?= $act['id_jadwal']?>" class="btn btn-primary">Edit</a>
-                            <a href="" data-toggle="modal" data-target="#deleteModal<?= $act['id_jadwal']?>" class="btn btn-danger">Hapus</a>
-                         </td>
-                      </tr>
-                    <?php endforeach;
-                    }
-                    ?>
-                    </tbody>
-                  </table>
-                </div>
+            <div class="container-fluid">
+              <div class="row">
+                <?php foreach($kegiatan as $act): ?>
+                  <div class="col-md-6">
+                    <div class="row">
+                      <div class="col-md-6">
+                        <img src="<?= base_url('assets/img/kegiatan/'.$act['foto_kegiatan'])?>" alt="Belum ada Gambar" width="200" height="200">
+                      </div>
+                      <div class="col-md-6">
+                        <label for=""><?= $act['nama_kegiatan'];?></label><br>
+                        <p><?= $act['deskripsi'];?></p>
+                      </div>
+                    </div>
+                  </div>
+                <?php endforeach; ?>
+              </div>
+            </div>
             </div>
             </div>
           </div>
@@ -64,19 +49,17 @@
         <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/addKegiatan');?>" method="POST" class="form">
+        <form method="POST" action="<?= base_url('Akademik/addKegiatan');?>" enctype="multipart/form-data" class="form">
           <div class="form-group">
-                <input type="text" class="form-control" name="jadwal" placeholder="Jadwal">
+                <input type="text" class="form-control" name="nama" placeholder="Nama Kegiatan" required>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control" name="harian" placeholder="Harian">
+                <input type="file" class="form-control" name="foto" placeholder="Foto Kegiatan" id="imgInp">
+                <img id="blah" width="300" height="300" src="#" alt="Belum ada gambar" />
             </div>
+            <label for="">Deskripsi Kegiatan</label>
             <div class="form-group">
-                <input type="text" class="form-control" name="materi" placeholder="Materi Kegiatan">
-            </div>
-            <label for="">Keterangan</label>
-            <div class="form-group">
-                <textarea name="keterangan" id="" class="form-control"></textarea>
+                <textarea name="deskripsi" id="" class="form-control" required></textarea>
             </div>
         </div>
             <div class="modal-footer">

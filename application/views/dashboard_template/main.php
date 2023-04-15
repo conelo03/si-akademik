@@ -131,16 +131,26 @@
       <div class="main-sidebar sidebar-style-2">
         <aside id="sidebar-wrapper">
           <div class="sidebar-brand">
+            <img src="<?= base_url('assets/img/logo/logo-tk.png')?>" width="50" height="50" alt="">
             <a href="index.html">Siakad</a>
           </div>
           <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">SIA</a>
           </div>
+          <a class="sidebar-header nav-link text-dark" href="<?= base_url('Auth/dashboard_users/'.$role)?>">Dashboard</a>
           <ul class="sidebar-menu">
-            <li class="menu-header">Dashboard</li>
             <li>
-              <a href="<?= base_url('Auth/dashboard_users/'.$role)?>" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+              <a href="" class="nav-link  has-dropdown"><i class="fas fa-fire"></i><span>Profil</span></a>
+              <ul class="dropdown-menu">
+                    <li><a class="nav-link" href="">Sejarah</a></li>
+                    <li><a class="nav-link" href="">Visi dan Misi</a></li>
+                    <li><a class="nav-link" href="">Struktur Organisasi</a></li>
+                  </ul>
             </li>
+            <li>
+              <a href="<?= base_url('Akademik/kegiatan/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
+            </li>
+          <p class="ml-3 header-menu mt-3 text-dark">Master</p>
         <?php if($role==1){?>
           <li class="dropdown">
             <a href="#" class="nav-link has-dropdown"><i class="far fa-file-alt"></i> <span>Manajemen Data</span></a>
@@ -151,17 +161,19 @@
           </li>
           <?php }elseif($role==2){?>
             <li>
-              <a href="<?= base_url('Guru/absenSiswa/')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
+              <a href="<?= base_url('Rapor/absenSiswa/')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
+              <li>
+                <a href="<?= base_url('Akademik/master_siswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
+            </li>
+            <li>
+                <a href="<?= base_url('Rapor/raporSiswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Rapor</span></a>
+            </li>
             </li>
           <?php }elseif($role==3){?>
             <li>
               <a href="<?= base_url('Akademik/master_siswa')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
             </li>
             <?php }?>
-            <li>
-              <a href="<?= base_url('Akademik/kegiatan/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
-            </li>
-
           </ul>     
         </aside>
       </div>
@@ -202,6 +214,14 @@
     $(document).ready(function () {
       $('#tb').DataTable();
     });
+  </script>
+  <script>
+    imgInp.onchange = evt => {
+      const [file] = imgInp.files
+      if (file) {
+        blah.src = URL.createObjectURL(file)
+      }
+    }
   </script>
   <!-- Template JS File -->
   <script src="<?= base_url()?>assets/js/scripts.js"></script>

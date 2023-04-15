@@ -13,7 +13,7 @@
             <div class="card-body px-0 pt-0 pb-2">
             <div class="container-fluid">
                 <div class="table-responsive p-0">
-                  <table class="table align-items-center table-striped mb-0" id="pendaftaran">
+                  <table class="table align-items-center table-striped mb-0" id="tb">
                     <thead>
                       <tr>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
@@ -64,7 +64,7 @@
                       <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('Guru/isiAbsen/')?>" method="POST">
+                        <form action="<?= base_url('Rapor/isiAbsen/')?>" method="POST">
                             <div class="form-group">
                                 <label for="">Nama Siswa</label>
                                 <select name="nisn" id="" class="form-control mb-3">
@@ -110,7 +110,7 @@
         <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-                <form action="<?= base_url('Guru/koreksiAbsen/'.$attd['nisn'])?>" method="POST">
+                <form action="<?= base_url('Rapor/koreksiAbsen/'.$attd['nisn'])?>" method="POST">
                     <div class="form-group">
                          <label class="mr-3">Hadir</label>
                          <input class="mr-3" type=checkbox id="kehadiran" value="Hadir" name="kehadiran" value="Hadir" <?= ($attd['kehadiran'] == 'Hadir') ? "checked" : '' ?>>

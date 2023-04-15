@@ -76,8 +76,8 @@ class Akademik extends CI_Controller {
     ];
     $this->Master_Model->add($request,'master_siswa');
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah data siswa!</div>');
-  return redirect('Akademik/master_siswa/1');
-}
+    return redirect('Akademik/master_siswa/1');
+  }
 
 public function updateSiswa($id){
   $request = [
@@ -114,16 +114,26 @@ public function updateSiswa($id){
   }
 
   public function addKegiatan(){
-    $request = [
-        'jadwal'=> $this->input->post('jadwal'),
-        'harian'=> $this->input->post('harian'),
-        'materi_kegiatan'=> $this->input->post('materi'),
-        'keterangan'=> $this->input->post('keterangan'),
-    ];
-    $this->Master_Model->add($request,'jadwal_kegiatan');
-    $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah kegiatan!</div>');
-  return redirect('Akademik/kegiatan');
-}
+    $config['upload_path']          = './assets/img/kegiatan';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = 3000;
+    $config['max_width']            = 2000;
+    $config['max_height']           = 2000;
+
+    $this->load->library('upload', $config);
+    if($this->upload->do_upload('foto')){
+      $request = [
+          'nama_kegiatan'=> $this->input->post('nama'),
+          'foto_kegiatan'=> $this->upload->data('file_name'),
+          'deskripsi'=> $this->input->post('deskripsi'),
+      ];
+      $this->Master_Model->add($request,'jadwal_kegiatan');
+      $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menambah kegiatan!</div>');
+    }else{
+      $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Silahkan upload foto kegiatan!</div>');
+    }
+    return redirect('Akademik/kegiatan/1');
+  }
 
 public function updateKegiatan($id){
   $request = [

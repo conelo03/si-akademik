@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Guru extends CI_Controller {
+class Rapor extends CI_Controller {
     public function absenSiswa(){
         $data = [
             'title' => 'Absensi Siswa',
@@ -35,6 +35,19 @@ class Guru extends CI_Controller {
         $this->Master_Model->update('nisn','absen_siswa',$request,$nisn);
         $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil koreksi Absen!</div>');
         return redirect('Guru/absenSiswa');
+    }
+
+    public function raporSiswa(){
+        $data = [
+            'title' => 'Rapor Siswa',
+            'content' => 'guru/rapor',
+            'role' => 2,
+            'list' => $this->Master_Model->get('master_siswa'),
+            'bidang' => $this->Master_Model->get('pengembangan'),
+            // 'list' => $this->Absen_Model->join('absen_siswa') 
+        ];
+
+        $this->load->view('dashboard_template/main',$data);
     }
 
 }
