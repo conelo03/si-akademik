@@ -112,14 +112,14 @@
       <div class="modal-body">
                 <form action="<?= base_url('Guru/koreksiAbsen/'.$attd['nisn'])?>" method="POST">
                     <div class="form-group">
+                        <input type=checkbox id="kehadiran" value="Hadir" name="kehadiran" value="Hadir" <?= ($attd['kehadiran'] == 'Hadir') ? "checked" : '' ?>>
                          <label class="mr-3">Hadir</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" value="Hadir" name="kehadiran" value="Hadir" <?= ($attd['kehadiran'] == 'Hadir') ? "checked" : '' ?>>
+                          <input type=checkbox id="kehadiran" value="Izin" name="kehadiran" <?= ($attd['kehadiran'] == 'Izin') ? "checked" : '' ?>>
                          <label class="mr-3">Izin</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" value="Izin" name="kehadiran" <?= ($attd['kehadiran'] == 'Izin') ? "checked" : '' ?>>
+                          <input type=checkbox id="kehadiran" value="Sakit" name="kehadiran" <?= ($attd['kehadiran'] == 'Sakit') ? "checked" : '' ?>>
                          <label class="mr-3">Sakit</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" value="Sakit" name="kehadiran" <?= ($attd['kehadiran'] == 'Sakit') ? "checked" : '' ?>>
+                          <input type=checkbox id="kehadiran" value="Tanpa Keterangan" name="kehadiran" <?= ($attd['kehadiran'] == 'Tanpa Keterangan') ? "checked" : '' ?>>
                          <label class="mr-3">Tanpa Keterangan</label>
-                         <input class="mr-3" type=checkbox id="kehadiran" value="Tanpa Keterangan" name="kehadiran" <?= ($attd['kehadiran'] == 'Tanpa Keterangan') ? "checked" : '' ?>>
                     </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
