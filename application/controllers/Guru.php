@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Rapor extends CI_Controller {
+class Guru extends CI_Controller {
     public function absenSiswa(){
         $data = [
             'title' => 'Absensi Siswa',
