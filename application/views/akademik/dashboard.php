@@ -1,5 +1,7 @@
 <section class="section">
-          <div class="row">
+<h4 class="text-center text-light">SELAMAT DATANG DI SISTEM INFORMASI AKADEMIK
+TK SANTA EKA PUHU</h4>
+      <div class="row justify-content-center" style="margin-top:50px">
           <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">

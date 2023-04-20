@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2023 at 10:30 AM
+-- Generation Time: Apr 20, 2023 at 04:01 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -39,8 +39,10 @@ CREATE TABLE `absen_siswa` (
 --
 
 INSERT INTO `absen_siswa` (`id_absen`, `nisn`, `kehadiran`, `tanggal`) VALUES
-(6, 323111, 'Izin', '2023-04-11'),
-(8, 3231, 'Tanpa Keterangan', '2023-04-10');
+(6, 323111, 'Hadir', '2023-04-15'),
+(8, 3231, 'Tanpa Keterangan', '2023-04-10'),
+(9, 123, 'Hadir', '2023-04-15'),
+(10, 54321, 'Izin', '2023-04-15');
 
 -- --------------------------------------------------------
 
@@ -165,12 +167,29 @@ CREATE TABLE `penilaian` (
 
 CREATE TABLE `raport` (
   `id_raport` int(11) NOT NULL,
-  `id_absen` int(11) NOT NULL,
+  `nisn` int(11) NOT NULL,
+  `id_pengembangan` int(11) NOT NULL,
+  `semester` int(11) NOT NULL,
+  `tahun_ajaran` varchar(128) NOT NULL,
   `keterampilan` varchar(128) NOT NULL,
   `sikap` varchar(128) NOT NULL,
-  `akademik` varchar(128) NOT NULL,
+  `pengetahuan` varchar(128) NOT NULL,
+  `deskripsi_keterampilan` text NOT NULL,
+  `deskripsi_sikap` text NOT NULL,
+  `deskripsi_pengetahuan` text NOT NULL,
   `catatan` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `raport`
+--
+
+INSERT INTO `raport` (`id_raport`, `nisn`, `id_pengembangan`, `semester`, `tahun_ajaran`, `keterampilan`, `sikap`, `pengetahuan`, `deskripsi_keterampilan`, `deskripsi_sikap`, `deskripsi_pengetahuan`, `catatan`) VALUES
+(2, 3231, 1, 4, '2012-2015', '80', '90', '80', 'dsfds', 'DSFSA', 'fsafsdf', ''),
+(3, 3231, 2, 4, '2012-2015', '60', '90', '50', 'jksdlkfj', 'fdjlsjf', 'djfldsjk', ''),
+(4, 3231, 3, 4, '2012-2015', '79', '89', '65', 'jflsd', 'lkdsjf', 'jlfdsj', ''),
+(5, 3231, 4, 4, '90', '86', '95', '68', 'dsljk', 'fdslk', 'hjkdh', ''),
+(6, 3231, 5, 4, '2012-2015', '80', '62', '76', 'dsjf', 'dsflskj', 'jkldjf', '');
 
 -- --------------------------------------------------------
 
@@ -235,7 +254,8 @@ ALTER TABLE `pengembangan`
 --
 ALTER TABLE `raport`
   ADD PRIMARY KEY (`id_raport`),
-  ADD KEY `id_absen` (`id_absen`);
+  ADD KEY `id_pengembangan` (`id_pengembangan`),
+  ADD KEY `raport_ibfk_1` (`nisn`);
 
 --
 -- Indexes for table `users`
@@ -251,7 +271,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `absen_siswa`
 --
 ALTER TABLE `absen_siswa`
-  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_absen` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `jadwal_kegiatan`
@@ -269,7 +289,7 @@ ALTER TABLE `pengembangan`
 -- AUTO_INCREMENT for table `raport`
 --
 ALTER TABLE `raport`
-  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -291,7 +311,8 @@ ALTER TABLE `absen_siswa`
 -- Constraints for table `raport`
 --
 ALTER TABLE `raport`
-  ADD CONSTRAINT `raport_ibfk_1` FOREIGN KEY (`id_absen`) REFERENCES `absen_siswa` (`id_absen`);
+  ADD CONSTRAINT `raport_ibfk_1` FOREIGN KEY (`nisn`) REFERENCES `master_siswa` (`nisn`),
+  ADD CONSTRAINT `raport_ibfk_2` FOREIGN KEY (`id_pengembangan`) REFERENCES `pengembangan` (`id_pengembangan`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

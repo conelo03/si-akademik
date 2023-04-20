@@ -27,4 +27,12 @@ class Master_Model extends CI_Model {
     public function countBy($table,$by,$val){
         return $this->db->get_where($table,[$by => $val])->num_rows();
     }
+
+    public function join($table1,$table2,$table3,$key,$key2){
+        $this->db->select('*');
+        $this->db->from($table1);
+        $this->db->join($table2, ''.$table1.'.'.$key.'='.$table2.'.'.$key.'');
+        $this->db->join($table3, ''.$table2.'.'.$key2.'='.$table3.'.'.$key2.'');
+        return $this->db->get()->result_array();
+    }
 }

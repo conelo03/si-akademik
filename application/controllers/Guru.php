@@ -42,12 +42,29 @@ class Guru extends CI_Controller {
             'title' => 'Rapor Siswa',
             'content' => 'guru/rapor',
             'role' => 2,
-            'list' => $this->Master_Model->get('master_siswa'),
             'bidang' => $this->Master_Model->get('pengembangan'),
-            // 'list' => $this->Absen_Model->join('absen_siswa') 
+            'rapor' => $this->Master_Model->join('master_siswa','raport','pengembangan','nisn','id_pengembangan'),
+            'isNilai' => $this->Rapor_Model->isNilai()
         ];
-
         $this->load->view('dashboard_template/main',$data);
+    }
+
+    public function inputNilai(){
+        $request = [
+            'nisn' => $this->input->post('nisn'),
+            'id_pengembangan' => $this->input->post('bidang'),
+            'semester' => $this->input->post('semester'),
+            'tahun_ajaran' => $this->input->post('tahun'),
+            'keterampilan' => $this->input->post('nilai_keterampilan'),
+            'sikap' => $this->input->post('nilai_sikap'),
+            'pengetahuan' => $this->input->post('nilai_pengetahuan'),
+            'deskripsi_keterampilan' => $this->input->post('deskripsi_keterampilan'),
+            'deskripsi_sikap' => $this->input->post('deskripsi_sikap'),
+            'deskripsi_pengetahuan' => $this->input->post('deskripsi_pengetahuan')
+        ];
+        $this->Master_Model->add($request,'raport');
+        $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Input Nilai!</div>');
+        return redirect('Guru/raporSiswa');
     }
 
 }
