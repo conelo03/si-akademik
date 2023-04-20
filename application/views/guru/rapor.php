@@ -133,31 +133,3 @@
     </div>
   </div>
 </div>
-
-
-
-      <!-- Modal Koreksi Absen -->
-      <?php foreach ($list as $attd) :?>
-<div class="modal fade" id="koreksiModal<?= $attd['nisn']?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Koreksi Absen Siswa</h5>
-        <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
-      </div>
-      <div class="modal-body">
-                <form action="<?= base_url('Guru/koreksiAbsen/'.$attd['nisn'])?>" method="POST">
-                    <div class="form-group">
-
-                    </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
-                    <button class="btn btn-success" type="submit">Simpan</button>
-            </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<?php endforeach;?>
