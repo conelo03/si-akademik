@@ -63,9 +63,6 @@
                             <div class="form-group">
                             <label for="">Nama Siswa</label>
                                 <select name="nisn" id="" class="form-control mb-3">
-                                  <?php if($count == 0) {?>
-                                      <option>Sudah Input Semua</option>
-                                      <?php }?>
                                     <?php foreach ($isNilai as $nilai) :?>
                                             <option value="<?= $nilai['nisn']?>"><?= $nilai['nama'];?></option>
                                     <?php endforeach;?>

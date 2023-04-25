@@ -62,6 +62,26 @@ class Guru extends CI_Controller {
             'deskripsi_sikap' => $this->input->post('deskripsi_sikap'),
             'deskripsi_pengetahuan' => $this->input->post('deskripsi_pengetahuan')
         ];
+        
+        //insert ke tabel penilaian
+        $progress = $this->Rapor_Model->count_rows($request['nisn']);
+        if ($progress == 0){
+            $request2 = [
+                'nisn' => $request['nisn'],
+                'semester' => $request['semester'],
+                'progress' => $progress++,
+                'isComplete' => FALSE
+            ];
+            $this->Master_Model->add($request2,'penilaian');
+        }
+        
+        //UPDATE isComplete
+        if($progress == 6){
+            $this->Master_Model->update('nisn','penilaian',['isComplete'=>TRUE],$request['nisn']);
+        }
+        $this->Master_Model->update('nisn','penilaian',['progress'=>$progress++],$request['nisn']);
+
+        //insert ke tabel raport
         $this->Master_Model->add($request,'raport');
         $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Input Nilai!</div>');
         return redirect('Guru/raporSiswa');
