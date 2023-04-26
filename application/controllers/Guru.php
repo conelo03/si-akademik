@@ -81,9 +81,15 @@ class Guru extends CI_Controller {
         }
         $this->Master_Model->update('nisn','penilaian',['progress'=>$progress++],$request['nisn']);
 
-        //insert ke tabel raport
-        $this->Master_Model->add($request,'raport');
-        $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Input Nilai!</div>');
+        //Validate duplikat nilai pengembangan
+        $isDuplicate = $this->Rapor_Model->isDuplicate($request['nisn'],$request['id_pengembangan']);
+        if($isDuplicate == 0){
+            //insert ke tabel raport
+            $this->Master_Model->add($request,'raport');
+            $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Input Nilai!</div>');
+        }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Nilai Sudah diinput!</div>');
+        }
         return redirect('Guru/raporSiswa');
     }
 
