@@ -17,4 +17,9 @@ class Rapor_Model extends CI_Model {
         return $this->db->query("SELECT *FROM raport WHERE nisn =".$nisn." AND id_pengembangan in(".$id_pengembangan.")")->num_rows();
     }
 
+    public function updateNilai($request,$val1,$val2,$val3){
+        $this->db->where(['nisn' => $val1,'id_pengembangan'=>$val2,'semester'=>$val3]);
+        return $this->db->update('raport',$request);
+    }
+
 }
