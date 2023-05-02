@@ -69,7 +69,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                    <input type="text" class="form-control" value="<?= $rp[''];?>" name="semester" placeholder="Semester">
+                                    <input type="text" class="form-control" name="semester" placeholder="Semester">
                             </div>
                             <div class="form-group">
                                     <input type="text" class="form-control" name="tahun" placeholder="Tahun Ajaran">
@@ -141,11 +141,11 @@
                       <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('Guru/editNilai/'.$rp['nisn'].'/'.$rp['id_pengembangan'].'/'.$rp['semester'])?>" method="POST">
+                        <form action="<?= base_url('Guru/editNilai/'.$rp['nisn'].'/'.'/'.$rp['semester'])?>" method="POST">
                             <div class="form-group">
                             <label for="">Nama Siswa</label>
                                 <select name="nisn" id="" class="form-control mb-3">
-                                  <option value="<?= $rp['nama'];?>">-- <?= $rp['nama'];?> --</option>
+                                  <option value="<?= $rp['nisn'];?>">-- <?= $rp['nama'];?> --</option>
                                     <?php foreach ($isNilai as $nilai) :?>
                                             <option value="<?= $nilai['nisn']?>"><?= $nilai['nama'];?></option>
                                     <?php endforeach;?>

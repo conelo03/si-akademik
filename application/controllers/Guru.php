@@ -93,7 +93,7 @@ class Guru extends CI_Controller {
         return redirect('Guru/raporSiswa');
     }
 
-    public function editNilai($nisn,$id_pengembangan,$semester){
+    public function editNilai($nisn,$semester){
         $req = [
             'nisn' => $this->input->post('nisn'),
             'id_pengembangan' => $this->input->post('bidang'),
@@ -108,17 +108,18 @@ class Guru extends CI_Controller {
         ];
 
         //UPDATE isComplete
-        $progress = $this->Rapor_Model->count_rows($req['nisn']);
+        $progress = $this->Rapor_Model->count_rows(intval($nisn));
         if($progress == 6){
             $this->Master_Model->update('nisn','penilaian',['isComplete'=>TRUE],$req['nisn']);
         }
-        $this->Master_Model->update('nisn','penilaian',['progress'=>$progress++],$req['nisn']);
-
+        $this->Master_Model->update('nisn','penilaian',['progress'=>$progress++],intval($nisn));
         //Validate duplikat nilai pengembangan
-        $isDuplicate = $this->Rapor_Model->isDuplicate($req['nisn'],$req['id_pengembangan']);
-        if($isDuplicate == 0){
+        $isDuplicate = $this->Rapor_Model->isDuplicate(intval($nisn),$reintval($id_raport),intval($semester),$req);
+        var_dump($isDuplicate);die;
+        if($isDuplicate < 1){
+            // if($)
             //update ke tabel raport
-            $this->Rapor_Model->update($req,$nisn,$id_pengembangan,$semester);
+            $this->Rapor_Model->updateNilai($req,intval($nisn),intval($id_pengembangan),intval($semester));
             $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Input Nilai!</div>');
         }else{
             $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Nilai Sudah diinput!</div>');

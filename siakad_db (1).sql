@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2023 at 04:01 PM
+-- Generation Time: May 02, 2023 at 03:22 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -151,13 +151,24 @@ INSERT INTO `pengembangan` (`id_pengembangan`, `nama_pengembangan`) VALUES
 
 CREATE TABLE `penilaian` (
   `id` int(11) NOT NULL,
-  `aspek` varchar(128) NOT NULL,
-  `nilai` varchar(128) NOT NULL,
-  `deskripsi` text NOT NULL,
-  `sikap_spiritual` text NOT NULL,
-  `sikap_sosial` text NOT NULL,
-  `saran` text NOT NULL
+  `nisn` int(20) NOT NULL,
+  `semester` int(10) NOT NULL,
+  `isComplete` tinyint(1) NOT NULL,
+  `progress` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `penilaian`
+--
+
+INSERT INTO `penilaian` (`id`, `nisn`, `semester`, `isComplete`, `progress`) VALUES
+(5, 54321, 4, 1, 6),
+(6, 320943209, 3, 0, 1),
+(7, 3231, 3, 0, 1),
+(8, 3231, 3, 0, 1),
+(9, 3231, 3, 0, 1),
+(10, 3231, 3, 0, 1),
+(11, 3231, 3, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -185,11 +196,13 @@ CREATE TABLE `raport` (
 --
 
 INSERT INTO `raport` (`id_raport`, `nisn`, `id_pengembangan`, `semester`, `tahun_ajaran`, `keterampilan`, `sikap`, `pengetahuan`, `deskripsi_keterampilan`, `deskripsi_sikap`, `deskripsi_pengetahuan`, `catatan`) VALUES
-(2, 3231, 1, 4, '2012-2015', '80', '90', '80', 'dsfds', 'DSFSA', 'fsafsdf', ''),
-(3, 3231, 2, 4, '2012-2015', '60', '90', '50', 'jksdlkfj', 'fdjlsjf', 'djfldsjk', ''),
-(4, 3231, 3, 4, '2012-2015', '79', '89', '65', 'jflsd', 'lkdsjf', 'jlfdsj', ''),
-(5, 3231, 4, 4, '90', '86', '95', '68', 'dsljk', 'fdslk', 'hjkdh', ''),
-(6, 3231, 5, 4, '2012-2015', '80', '62', '76', 'dsjf', 'dsflskj', 'jkldjf', '');
+(18, 54321, 1, 4, '2012-2015', '80', '31', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
+(19, 54321, 2, 4, '2012-2015', '60', '80', '90', 'kljjk', 'jklj', 'lkfljdskl', ''),
+(20, 54321, 3, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
+(22, 54321, 6, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
+(23, 54321, 4, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
+(24, 54321, 5, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
+(25, 3231, 1, 3, '2012-2015', '90', '90', '90', 'dkslfj', 'fdjsl', 'jdlks', '');
 
 -- --------------------------------------------------------
 
@@ -250,6 +263,13 @@ ALTER TABLE `pengembangan`
   ADD PRIMARY KEY (`id_pengembangan`);
 
 --
+-- Indexes for table `penilaian`
+--
+ALTER TABLE `penilaian`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `nisn` (`nisn`);
+
+--
 -- Indexes for table `raport`
 --
 ALTER TABLE `raport`
@@ -286,10 +306,16 @@ ALTER TABLE `pengembangan`
   MODIFY `id_pengembangan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `penilaian`
+--
+ALTER TABLE `penilaian`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `raport`
 --
 ALTER TABLE `raport`
-  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -306,6 +332,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `absen_siswa`
   ADD CONSTRAINT `absen_siswa_ibfk_1` FOREIGN KEY (`nisn`) REFERENCES `master_siswa` (`nisn`);
+
+--
+-- Constraints for table `penilaian`
+--
+ALTER TABLE `penilaian`
+  ADD CONSTRAINT `penilaian_ibfk_2` FOREIGN KEY (`nisn`) REFERENCES `master_siswa` (`nisn`);
 
 --
 -- Constraints for table `raport`
