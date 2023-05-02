@@ -20,6 +20,7 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NISN</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aspek</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Semester</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                       </tr>
                     </thead>
@@ -32,6 +33,7 @@
                          <td><?= $siswa['nisn'];?></td>
                          <td><?= $siswa['nama'];?></td>
                          <td><?= $siswa['nama_pengembangan'];?></td>
+                         <td><?= $siswa['semester'];?></td>
                     
                          <td>
                             <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editModal<?= $siswa['nisn']?>">Edit</a>

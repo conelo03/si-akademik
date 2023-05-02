@@ -13,17 +13,8 @@ class Rapor_Model extends CI_Model {
         return $query->num_rows();
     }
 
-    public function isDuplicate($nisn,$id_raport,$semester,$req){
-        $query = $this->db->query("SELECT *FROM raport WHERE nisn =".$nisn." AND semester =".$semester." AND id_pengembangan in(".$id_pengembangan.")");
-        $count = $query->num_rows();
-        $data = $query->row_array();
-        var_dump($data);die;
-        if($id_pengembangan !== $data['id_pengembangan']){
-           $this->db->where(['nisn' => $nisn,'id_pengembangan'=>$id_pengembangan,'semester'=>$semester]);
-           return $this->db->update('raport',$req); 
-        }else{
-            echo 'tidak ada duplikat';
-        }
+    public function isDuplicate($nisn,$id_pengembangan,$semester){
+        return $this->db->query("SELECT *FROM raport WHERE nisn =".$nisn." AND semester =".$semester." AND id_pengembangan in(".$id_pengembangan.")")->num_rows();
     }
 
     public function updateNilai($request,$val1,$val2,$val3){

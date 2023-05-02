@@ -82,7 +82,7 @@ class Guru extends CI_Controller {
         $this->Master_Model->update('nisn','penilaian',['progress'=>$progress++],$request['nisn']);
 
         //Validate duplikat nilai pengembangan
-        $isDuplicate = $this->Rapor_Model->isDuplicate($request['nisn'],$request['id_pengembangan']);
+        $isDuplicate = $this->Rapor_Model->isDuplicate($request['nisn'],$request['id_pengembangan'],$request['semester']);
         if($isDuplicate == 0){
             //insert ke tabel raport
             $this->Master_Model->add($request,'raport');
@@ -94,37 +94,37 @@ class Guru extends CI_Controller {
     }
 
     public function editNilai($nisn,$semester){
-        $req = [
-            'nisn' => $this->input->post('nisn'),
-            'id_pengembangan' => $this->input->post('bidang'),
-            'semester' => $this->input->post('semester'),
-            'tahun_ajaran' => $this->input->post('tahun'),
-            'keterampilan' => $this->input->post('nilai_keterampilan'),
-            'sikap' => $this->input->post('nilai_sikap'),
-            'pengetahuan' => $this->input->post('nilai_pengetahuan'),
-            'deskripsi_keterampilan' => $this->input->post('deskripsi_keterampilan'),
-            'deskripsi_sikap' => $this->input->post('deskripsi_sikap'),
-            'deskripsi_pengetahuan' => $this->input->post('deskripsi_pengetahuan')
-        ];
+        // $req = [
+        //     'nisn' => $this->input->post('nisn'),
+        //     'id_pengembangan' => $this->input->post('bidang'),
+        //     'semester' => $this->input->post('semester'),
+        //     'tahun_ajaran' => $this->input->post('tahun'),
+        //     'keterampilan' => $this->input->post('nilai_keterampilan'),
+        //     'sikap' => $this->input->post('nilai_sikap'),
+        //     'pengetahuan' => $this->input->post('nilai_pengetahuan'),
+        //     'deskripsi_keterampilan' => $this->input->post('deskripsi_keterampilan'),
+        //     'deskripsi_sikap' => $this->input->post('deskripsi_sikap'),
+        //     'deskripsi_pengetahuan' => $this->input->post('deskripsi_pengetahuan')
+        // ];
 
         //UPDATE isComplete
-        $progress = $this->Rapor_Model->count_rows(intval($nisn));
-        if($progress == 6){
-            $this->Master_Model->update('nisn','penilaian',['isComplete'=>TRUE],$req['nisn']);
-        }
-        $this->Master_Model->update('nisn','penilaian',['progress'=>$progress++],intval($nisn));
+        // $progress = $this->Rapor_Model->count_rows(intval($nisn));
+        // if($progress == 6){
+        //     $this->Master_Model->update('nisn','penilaian',['isComplete'=>TRUE],$req['nisn']);
+        // }
+        // $this->Master_Model->update('nisn','penilaian',['progress'=>$progress++],intval($nisn));
         //Validate duplikat nilai pengembangan
-        $isDuplicate = $this->Rapor_Model->isDuplicate(intval($nisn),$reintval($id_raport),intval($semester),$req);
-        var_dump($isDuplicate);die;
-        if($isDuplicate < 1){
+        // $isDuplicate = $this->Rapor_Model->isDuplicate(intval($nisn),$reintval($id_raport),intval($semester),$req);
+        // var_dump($isDuplicate);die;
+        // if($isDuplicate < 1){
             // if($)
             //update ke tabel raport
-            $this->Rapor_Model->updateNilai($req,intval($nisn),intval($id_pengembangan),intval($semester));
-            $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Input Nilai!</div>');
-        }else{
-            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Nilai Sudah diinput!</div>');
-        }
-        return redirect('Guru/raporSiswa');
+        //     $this->Rapor_Model->updateNilai($req,intval($nisn),intval($id_pengembangan),intval($semester));
+        //     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Input Nilai!</div>');
+        // }else{
+        //     $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Nilai Sudah diinput!</div>');
+        // }
+        // return redirect('Guru/raporSiswa');
     }
 
 }
