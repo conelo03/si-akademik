@@ -13,13 +13,30 @@ class Rapor_Model extends CI_Model {
         return $query->num_rows();
     }
 
-    public function isDuplicate($nisn,$id_pengembangan,$semester){
-        return $this->db->query("SELECT *FROM raport WHERE nisn =".$nisn." AND semester =".$semester." AND id_pengembangan in(".$id_pengembangan.")")->num_rows();
-    }
-
     public function updateNilai($request,$val1,$val2,$val3){
         $this->db->where(['nisn' => $val1,'id_pengembangan'=>$val2,'semester'=>$val3]);
         return $this->db->update('raport',$request);
     }
+
+    public function isDuplicate($nisn,$id_pengembangan,$semester,$flag){
+        $query = $this->db->query("SELECT *FROM raport WHERE nisn =".$nisn." AND semester =".$semester." AND id_pengembangan in(".$id_pengembangan.")");
+        $data = $query->row_array();
+        if($flag === 'add'){
+            return $query->num_rows();
+        }else{
+            $req = [
+                'semester' => $semester ,
+                'tahun_ajaran' => $this->input->post('tahun'),
+                'keterampilan' => $this->input->post('nilai_keterampilan'),
+                'sikap' => $this->input->post('nilai_sikap'),
+                'pengetahuan' => $this->input->post('nilai_pengetahuan'),
+                'deskripsi_keterampilan' => $this->input->post('deskripsi_keterampilan'),
+                'deskripsi_sikap' => $this->input->post('deskripsi_sikap'),
+                'deskripsi_pengetahuan' => $this->input->post('deskripsi_pengetahuan')
+            ];
+            return $this->updateNilai($req,$nisn,$id_pengembangan,$semester);
+        }
+    }
+
 
 }

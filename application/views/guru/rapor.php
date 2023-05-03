@@ -36,7 +36,7 @@
                          <td><?= $siswa['semester'];?></td>
                     
                          <td>
-                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editModal<?= $siswa['nisn']?>">Edit</a>
+                            <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editModal<?= $siswa['id_raport']?>">Edit</a>
                             <a href="" class="btn btn-danger" data-toggle="modal" data-target="#koreksiModal<?= $siswa['nisn']?>">Hapus</a>
                         </td>
                       </tr>
@@ -135,37 +135,29 @@
 
 <!-- Modal Edit Nilai -->
 <?php foreach($rapor as $rp):?>
-  <div class="modal fade" id="editModal<?= $rp['nisn'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="editModal<?= $rp['id_raport'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-lg modal-dialog-scrollable">
               <div class="modal-content">
                   <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLabel">Input Nilai Rapor Peserta Didik</h5>
+                      <h5 class="modal-title" id="exampleModalLabel">Edit Nilai Rapor Peserta Didik</h5>
                       <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
                     </div>
                     <div class="modal-body">
-                        <form action="<?= base_url('Guru/editNilai/'.$rp['nisn'].'/'.'/'.$rp['semester'])?>" method="POST">
+                        <form action="<?= base_url('Guru/editNilai/'.$rp['nisn'].'/'.$rp['semester'])?>" method="POST">
                             <div class="form-group">
                             <label for="">Nama Siswa</label>
-                                <select name="nisn" id="" class="form-control mb-3">
-                                  <option value="<?= $rp['nisn'];?>">-- <?= $rp['nama'];?> --</option>
-                                    <?php foreach ($isNilai as $nilai) :?>
-                                            <option value="<?= $nilai['nisn']?>"><?= $nilai['nama'];?></option>
-                                    <?php endforeach;?>
-                                </select>
+                                <input type="text" class="form-control" value="<?= $rp['nama'];?>" disabled>
+                                <input type="hidden" value="<?= $rp['nisn'];?>" name="nisn">
                             </div>
                             <div class="form-group">
-                                    <input type="text" class="form-control" value="<?= $rp['semester'];?>" name="semester" placeholder="Semester">
+                                    <input type="text" class="form-control" value="<?= $rp['semester'];?>" name="semester" placeholder="Semester" disabled>
                             </div>
                             <div class="form-group">
-                                    <input type="text" class="form-control" value="<?= $rp['tahun_ajaran'];?>" name="tahun" placeholder="Tahun Ajaran">
-                            </div>
+                                    <input type="text" class="form-control" value="<?= $rp['tahun_ajaran'];?>" name="tahun" placeholder="Tahun Ajaran" disabled>
+                                </div>
                             <div class="form-group">
-                                    <select name="bidang" class="form-control">
-                                        <option value="<?= $rp['id_pengembangan'];?>">-- <?= $rp['nama_pengembangan'];?> --</option>
-                                        <?php foreach($bidang as $bid):?>
-                                            <option value="<?= $bid['id_pengembangan'];?>"><?= $bid['nama_pengembangan'];?></option>
-                                        <?php endforeach; ?>
-                                    </select>
+                                <input type="text" class="form-control" value="<?= $rp['nama_pengembangan'];?>" disabled>
+                                <input type="hidden" value="<?= $rp['id_pengembangan'];?>" name="bidang">
                             </div>
                             <hr>
                             <p class="text-center">Pengetahuan</p>
