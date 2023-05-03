@@ -37,7 +37,7 @@
                     
                          <td>
                             <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editModal<?= $siswa['id_raport']?>">Edit</a>
-                            <a href="" class="btn btn-danger" data-toggle="modal" data-target="#koreksiModal<?= $siswa['nisn']?>">Hapus</a>
+                            <a href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?= $siswa['id_raport']?>">Hapus</a>
                         </td>
                       </tr>
                     <?php endforeach;
@@ -201,6 +201,32 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
                     <button class="btn btn-success" type="submit">Simpan</button>
+            </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<?php endforeach;?>
+
+
+<!-- Modal Hapus Nilai -->
+<?php foreach($rapor as $rp1):?>
+  <div class="modal fade" id="deleteModal<?= $rp1['id_raport'];?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-sm modal-dialog-scrollable">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLabel">Hapus Nilai Rapor Peserta Didik</h5>
+                      <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="<?= base_url('Guru/hapusNilai/'.$rp1['id_raport'])?>" method="POST">
+                            <p>Apakah Anda yakin ingin menghapus data ini?</p>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button class="btn btn-danger" type="submit">Hapus</button>
             </div>
         </form>
       </div>

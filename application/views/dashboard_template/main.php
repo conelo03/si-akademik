@@ -104,7 +104,7 @@
             </li>
           <?php }elseif($role==3){?>
             <li>
-              <a href="<?= base_url('Akademik/master_siswa')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
+              <a href="<?= base_url('Akademik/master_siswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
             </li>
             <?php }?>
           </ul>     

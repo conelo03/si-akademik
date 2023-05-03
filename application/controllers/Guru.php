@@ -108,4 +108,10 @@ class Guru extends CI_Controller {
 
     }
 
+    public function hapusNilai($id){
+        $this->Master_Model->delete('id_raport','raport',$id);
+        $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Hapus Nilai!</div>');
+        return redirect('Guru/raporSiswa');
+    }
+
 }
