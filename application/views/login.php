@@ -27,16 +27,23 @@
 </script>
 <!-- /END GA --></head>
 
-<body>
+<body class="bg-primary">
   <div id="app">
     <section class="section">
-      <div class="container mt-5">
+      <div class="container">
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-
+            <div class="row mt-3">
+              <div class="col-md-4">
+                <img  class="justify-content-right" src="<?= base_url('assets/img/logo/logo-tk.png')?>" width=80 height=80 alt="">
+              </div>
+              <div class="col-md-8">
+                <h4 class="text-left text-white">TK Santa Eka Puhu</h4>
+              </div>
+            </div>
             <div class="card card-primary">
               <div class="card-header"><h4>Login</h4></div>
-
+                <p class="text-center">Selamat Datang di Login Siakad TK Santa Eka Puhu</p>
               <div class="card-body">
                 <form method="POST" autocomplete="off" action="<?= base_url('Auth/login')?>" class="needs-validation" novalidate="">
                   <div class="form-group">
@@ -68,7 +75,7 @@
               </div>
             </div>
 
-            <div class="simple-footer">
+            <div class="simple-footer text-light">
               Copyright &copy; Siakad <?= date('Y')?>
             </div>
           </div>

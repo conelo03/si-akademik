@@ -153,6 +153,56 @@ public function updateKegiatan($id){
     return redirect('Akademik/kegiatan');
   }
 
+  public function profil(){
+    $data = [
+      'title' => 'Profil TK',
+      'role' => $role,
+      'content' => 'akademik/profil',
+      'profil' => $this->Master_Model->get('profil_tk')
+  ];
+  $this->load->view('dashboard_template/main',$data);
+  }
+
+
+  public function addProfil(){
+    $config['upload_path']          = './assets/img/profil';
+    $config['allowed_types']        = 'gif|jpg|png';
+    $config['max_size']             = 3000;
+    $config['max_width']            = 2000;
+    $config['max_height']           = 2000;
+
+    $this->load->library('upload', $config);
+    if($this->upload->do_upload('foto')){
+      $request = [
+          'sejarah'=> $this->input->post('sejarah'),
+          'visi_misi'=> $this->input->post('visi_misi'),
+          'struktur_organisasi'=> $this->upload->data('file_name')
+      ];
+      $this->Master_Model->add($request,'profil_tk');
+      $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil input profil!</div>');
+    }else{
+      $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Silahkan upload struktur organisasi!</div>');
+    }
+    return redirect('Akademik/profil/1');
+  }
+
+  public function updateProfil($id){
+    $request = [
+      'sejarah'=> $this->input->post('sejarah'),
+      'visi_misi'=> $this->input->post('visi_misi'),
+      'struktur_organisasi'=> $this->upload->data('file_name')
+    ];
+      $this->Master_Model->update('id','profil_tk',$request,$id);
+      $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah profil!</div>');
+      return redirect('Akademik/profil');
+    }
+  
+    public function deleteProfil($id){ 
+      $this->Master_Model->delete('id','profil_tk',$id);
+      $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil menghapus profil!</div>');
+      return redirect('Akademik/profil');
+    }
+
 
 
 }
