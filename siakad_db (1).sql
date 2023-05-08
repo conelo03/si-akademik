@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 02, 2023 at 03:22 PM
+-- Generation Time: May 08, 2023 at 04:41 PM
 -- Server version: 10.4.25-MariaDB
 -- PHP Version: 8.1.10
 
@@ -63,7 +63,8 @@ CREATE TABLE `jadwal_kegiatan` (
 
 INSERT INTO `jadwal_kegiatan` (`id_kegiatan`, `nama_kegiatan`, `foto_kegiatan`, `deskripsi`) VALUES
 (5, 'Seminar Endgame with Gita Wirjawan', 'ENDGAME2.png', 'Membahas masa depan manusia'),
-(6, 'Seminar Endgame with Gita Wirjawan', 'ENDGAME3.png', 'Membahas masa depan manusia');
+(6, 'Seminar Endgame with Gita Wirjawan', 'ENDGAME3.png', 'Membahas masa depan manusia'),
+(7, 'kjfdslk', 'ENDGAME4.png', 'fdkljfklds');
 
 -- --------------------------------------------------------
 
@@ -164,11 +165,24 @@ CREATE TABLE `penilaian` (
 INSERT INTO `penilaian` (`id`, `nisn`, `semester`, `isComplete`, `progress`) VALUES
 (5, 54321, 4, 1, 6),
 (6, 320943209, 3, 0, 1),
-(7, 3231, 3, 0, 1),
-(8, 3231, 3, 0, 1),
-(9, 3231, 3, 0, 1),
-(10, 3231, 3, 0, 1),
-(11, 3231, 3, 0, 1);
+(7, 3231, 3, 0, 2),
+(8, 3231, 3, 0, 2),
+(9, 3231, 3, 0, 2),
+(10, 3231, 3, 0, 2),
+(11, 3231, 3, 0, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `profil_tk`
+--
+
+CREATE TABLE `profil_tk` (
+  `id` int(11) NOT NULL,
+  `sejarah` text NOT NULL,
+  `visi_misi` text NOT NULL,
+  `struktur_organisasi` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -201,8 +215,7 @@ INSERT INTO `raport` (`id_raport`, `nisn`, `id_pengembangan`, `semester`, `tahun
 (20, 54321, 3, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
 (22, 54321, 6, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
 (23, 54321, 4, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
-(24, 54321, 5, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', ''),
-(25, 3231, 1, 3, '2012-2015', '90', '90', '90', 'dkslfj', 'fdjsl', 'jdlks', '');
+(24, 54321, 5, 4, '2012-2015', '80', '79', '90', 'sdjakl', 'kladjk', 'djshjk', '');
 
 -- --------------------------------------------------------
 
@@ -212,7 +225,9 @@ INSERT INTO `raport` (`id_raport`, `nisn`, `id_pengembangan`, `semester`, `tahun
 
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
-  `nama` varchar(128) NOT NULL,
+  `nama_depan` varchar(128) NOT NULL,
+  `nama_belakang` varchar(128) NOT NULL,
+  `no_hp` varchar(20) NOT NULL,
   `username` varchar(128) NOT NULL,
   `password` varchar(128) NOT NULL,
   `role` int(10) NOT NULL
@@ -222,10 +237,10 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `nama`, `username`, `password`, `role`) VALUES
-(1, 'Ahmad', 'ahmad', '123456', 1),
-(2, 'Richard', 'richard', '123456', 2),
-(3, 'Kipli', 'kipli', '123456', 3);
+INSERT INTO `users` (`id`, `nama_depan`, `nama_belakang`, `no_hp`, `username`, `password`, `role`) VALUES
+(1, 'Ahmad', 'Nuroddin', '087778814785', 'ahmad', '123456', 1),
+(2, 'Richard', 'Kelvin', '087778814955', 'richard', '123456', 2),
+(3, 'Kipli', 'Orang Tua', '087778819876', 'kipli', '123456', 3);
 
 --
 -- Indexes for dumped tables
@@ -270,6 +285,12 @@ ALTER TABLE `penilaian`
   ADD KEY `nisn` (`nisn`);
 
 --
+-- Indexes for table `profil_tk`
+--
+ALTER TABLE `profil_tk`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `raport`
 --
 ALTER TABLE `raport`
@@ -297,7 +318,7 @@ ALTER TABLE `absen_siswa`
 -- AUTO_INCREMENT for table `jadwal_kegiatan`
 --
 ALTER TABLE `jadwal_kegiatan`
-  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_kegiatan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `pengembangan`
@@ -312,10 +333,16 @@ ALTER TABLE `penilaian`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
+-- AUTO_INCREMENT for table `profil_tk`
+--
+ALTER TABLE `profil_tk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `raport`
 --
 ALTER TABLE `raport`
-  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_raport` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
 -- AUTO_INCREMENT for table `users`

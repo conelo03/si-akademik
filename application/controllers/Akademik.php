@@ -153,7 +153,7 @@ public function updateKegiatan($id){
     return redirect('Akademik/kegiatan');
   }
 
-  public function profil(){
+  public function profil($role){
     $data = [
       'title' => 'Profil TK',
       'role' => $role,
@@ -172,6 +172,7 @@ public function updateKegiatan($id){
     $config['max_height']           = 2000;
 
     $this->load->library('upload', $config);
+    var_dump($this->upload->do_upload('foto'));die;
     if($this->upload->do_upload('foto')){
       $request = [
           'sejarah'=> $this->input->post('sejarah'),

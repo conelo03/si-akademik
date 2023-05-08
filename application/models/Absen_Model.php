@@ -26,6 +26,10 @@ class Absen_Model extends CI_Model {
         return $query->num_rows();
     }
 
+    public function filterBy($val){
+        return $this->db->query("SELECT * FROM master_siswa join absen_siswa on master_siswa.nisn = absen_siswa.nisn WHERE absen_siswa.tanggal = '$val'")->result_array();
+    }
+
     public function absen(){
         $query = $this->db->query("SELECT *FROM master_siswa where nisn not in (
             select nisn from absen_siswa   

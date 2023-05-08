@@ -50,11 +50,11 @@
             }
             ?></div></a>
             <div class="dropdown-menu dropdown-menu-right">
-              <a href="features-profile.html" class="dropdown-item has-icon">
+              <a href="<?= base_url('Auth/user_profile/'.$role)?>" class="dropdown-item has-icon">
                 <i class="far fa-user"></i> Profile
               </a>  
               <div class="dropdown-divider"></div>
-              <a href="<?= base_url('Auth/logout')?>" class="dropdown-item has-icon text-danger">
+              <a href="<?= base_url('Auth/validate/logout')?>" class="dropdown-item has-icon text-danger">
                 <i class="fas fa-sign-out-alt"></i> Logout
               </a>
             </div>
@@ -72,14 +72,17 @@
           </div>
           <a class="sidebar-header nav-link text-dark" href="<?= base_url('Auth/dashboard_users/'.$role)?>">Dashboard</a>
           <ul class="sidebar-menu">
-            <li>
+            <!-- <li>
               <a href="" class="nav-link  has-dropdown"><i class="fas fa-fire"></i><span>Profil</span></a>
               <ul class="dropdown-menu">
                     <li><a class="nav-link" href="">Sejarah</a></li>
                     <li><a class="nav-link" href="">Visi dan Misi</a></li>
                     <li><a class="nav-link" href="">Struktur Organisasi</a></li>
                   </ul>
-            </li>
+            </li> -->
+            <li>
+              <a href="<?= base_url('Akademik/profil/'.$role);?>" class="nav-link"><i class="fas fa-fire"></i><span>Profil</span></a>
+          </li>
             <li>
               <a href="<?= base_url('Akademik/kegiatan/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Kegiatan</span></a>
             </li>
@@ -94,17 +97,24 @@
           </li>
           <?php }elseif($role==2){?>
             <li>
-              <a href="<?= base_url('Guru/absenSiswa/')?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
+              <a href="<?= base_url('Guru/absenSiswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
               <li>
                 <a href="<?= base_url('Akademik/master_siswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
             </li>
             <li>
                 <a href="<?= base_url('Guru/raporSiswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Rapor</span></a>
             </li>
+            <li><a class="nav-link" href="<?= base_url('Akademik/master_guru/'.$role)?>"><i class="fas fa-clipboard"></i><span>Data Guru</span></a></li>
             </li>
           <?php }elseif($role==3){?>
             <li>
               <a href="<?= base_url('Akademik/master_siswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Siswa</span></a>
+            </li>
+            <li>
+              <a href="<?= base_url('Guru/absenSiswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Absensi Siswa</span></a>
+              <li>
+              <li>
+                <a href="<?= base_url('Guru/raporSiswa/'.$role)?>" class="nav-link"><i class="fas fa-clipboard"></i><span>Data Rapor</span></a>
             </li>
             <?php }?>
           </ul>     

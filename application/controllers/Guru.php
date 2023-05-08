@@ -2,11 +2,11 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Guru extends CI_Controller {
-    public function absenSiswa(){
+    public function absenSiswa($role){
         $data = [
             'title' => 'Absensi Siswa',
             'content' => 'guru/absen',
-            'role' => 2,
+            'role' => $role,
             'absensi' => $this->Absen_Model->absen(),
             'count' => $this->Absen_Model->count(),
             'list' => $this->Absen_Model->join('absen_siswa') 
@@ -37,16 +37,15 @@ class Guru extends CI_Controller {
         return redirect('Guru/absenSiswa');
     }
 
-    public function raporSiswa(){
+    public function raporSiswa($role){
         $data = [
             'title' => 'Rapor Siswa',
             'content' => 'guru/rapor',
-            'role' => 2,
+            'role' => $role,
             'bidang' => $this->Master_Model->get('pengembangan'),
             'rapor' => $this->Master_Model->join('master_siswa','raport','pengembangan','nisn','id_pengembangan'),
             'isNilai' => $this->Rapor_Model->isNilai()
         ];
-        // var_dump($data['rapor']);die;
         $this->load->view('dashboard_template/main',$data);
     }
 
@@ -113,5 +112,31 @@ class Guru extends CI_Controller {
         $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Hapus Nilai!</div>');
         return redirect('Guru/raporSiswa');
     }
+
+    public function filterAbsen($role){
+        $data = [
+            'title' => 'Absensi Siswa',
+            'content' => 'guru/absen',
+            'role' => $role,
+            'absensi' => $this->Absen_Model->absen(),
+            'count' => $this->Absen_Model->count(),
+            'list' => $this->Absen_Model->filterBy($this->input->post('date'))
+        ];
+
+        $this->load->view('dashboard_template/main',$data);
+    }
+
+    public function generateRapor($nisn){
+        $data = [
+            'title' => 'Rapor Siswa',
+            'rapor' => $this->Rapor_Model->join('master_siswa','raport','pengembangan','nisn','id_pengembangan',$nisn),
+            'rapor1' => $this->Rapor_Model->join('master_siswa','raport','pengembangan','nisn','id_pengembangan',$nisn)
+        ];
+        // var_dump($data['rapor1']);die;
+        $this->load->library('pdf');
+        $html = $this->load->view('guru/pdf_rapor', $data, true);
+        $this->pdf->createPDF($html, 'mypdf', false);
+    }
+
 
 }

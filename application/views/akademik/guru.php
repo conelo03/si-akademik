@@ -6,7 +6,9 @@
                         <h6>Data Guru</h6>
                       </div>
                       <div>
-                        <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Guru</button>
+                        <?php if($this->session->userdata() == 1){?>
+                          <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Guru</button>
+                        <?php } ?>
                         <?= $this->session->flashdata('message');?>
                       </div>
                   </div>
@@ -21,7 +23,9 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NUPTK</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telepon</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                        <?php if($this->session->userdata() == 1){?>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                        <?php } ?>
                       </tr>
                     </thead>
                     <tbody>
@@ -33,10 +37,12 @@
                           <td><?= $teach['nuptk'];?></td>
                           <td><?= $teach['nama'];?></td>
                           <td><?= $teach['telp'];?></td>
+                        <?php if($this->session->userdata() == 1){?>
                           <td>
                               <a href="" data-toggle="modal" data-target="#editModal<?= $teach['nuptk']?>" class="btn btn-primary">Edit</a>
                               <a href="" data-toggle="modal" data-target="#deleteModal<?= $teach['nuptk']?>" class="btn btn-danger">Hapus</a>
                           </td>
+                        <?php } ?>
                         </tr>
                       <?php endforeach; ?>
                     </tbody>

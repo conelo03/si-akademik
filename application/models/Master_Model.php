@@ -11,6 +11,10 @@ class Master_Model extends CI_Model {
         return $this->db->get($table)->result_array();
     }
 
+    public function getBy($table,$key,$val){
+        return $this->db->get_where($table,[$key=>$val])->row_array();
+    }
+
     public function update($key,$table,$request,$id){
         $this->db->where($key,$id);
         return $this->db->update($table,$request);
@@ -27,6 +31,7 @@ class Master_Model extends CI_Model {
     public function countBy($table,$by,$val){
         return $this->db->get_where($table,[$by => $val])->num_rows();
     }
+
 
     public function join($table1,$table2,$table3,$key,$key2){
         $this->db->select('*');

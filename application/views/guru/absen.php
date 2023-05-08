@@ -2,12 +2,22 @@
 
         <div class="col-12">
           <div class="card mb-4">
-            <div class="card-header pb-0">
-                    <div class="col-md-12">
+            <div class="card-header">
+                 <div class="row">
+                    <div style="margin-right:600px">
                         <h6>Absensi Siswa</h6>
-                        <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#absenModal">Absen</a>
+                        <?php if($this->session->userdata('message') == 2){?>
+                          <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#absenModal">Absen</a>
+                        <?php } ?>
                         <?= $this->session->flashdata('message');?>
-                      </div>
+                    </div>
+                    <div>
+                      <form action="<?= base_url('Guru/filterAbsen/'.$role)?>" method="POST">
+                        <input type="date" class="form-control" name="date">
+                        <button class="btn btn-info mt-3" type="submit">Filter</button>
+                      </form>
+                    </div>
+                 </div>
                 </div>
             </div>
             <div class="card-body px-0 pt-0 pb-2">
@@ -21,7 +31,9 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Absensi</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
+                        <?php if($this->session->userdata() == 1){?>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                        <?php } ?>
                       </tr>
                     </thead>
                     <tbody>
@@ -37,10 +49,11 @@
                          <td><?= $attendant['nama'];?></td>
                          <td><?= $attendant['kehadiran'];?></td>
                          <td><?= $attendant['tanggal'];?></td>
-                    
+                         <?php if($this->session->userdata() == 1){?>
                          <td>
                             <a href="" class="btn btn-primary" data-toggle="modal" data-target="#koreksiModal<?= $attendant['nisn']?>">Koreksi</a>
                         </td>
+                        <?php } ?>
                       </tr>
                     <?php endforeach;
                     }

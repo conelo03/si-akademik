@@ -5,7 +5,9 @@
             <div class="card-header pb-0">
                     <div class="col-md-12">
                         <h6>Rapor Siswa</h6>
-                        <a href="" class="btn btn-success mb-3" data-toggle="modal" data-target="#inputModal">+ Input Nilai</a>
+                        <?php if($this->session->userdata('role') == 2){?>
+                            <a href="" class="btn btn-success mb-3" data-toggle="modal" data-target="#inputModal">+ Input Nilai</a>
+                        <?php } ?>
                         <?= $this->session->flashdata('message');?>
                       </div>
                 </div>
@@ -22,7 +24,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Aspek</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Semester</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
-                      </tr>
+                    </tr>
                     </thead>
                     <tbody>
                     <?php
@@ -34,10 +36,12 @@
                          <td><?= $siswa['nama'];?></td>
                          <td><?= $siswa['nama_pengembangan'];?></td>
                          <td><?= $siswa['semester'];?></td>
-                    
                          <td>
+                         <?php if($this->session->userdata('role') == 2){?>
                             <a href="" class="btn btn-primary" data-toggle="modal" data-target="#editModal<?= $siswa['id_raport']?>">Edit</a>
                             <a href="" class="btn btn-danger" data-toggle="modal" data-target="#deleteModal<?= $siswa['id_raport']?>">Hapus</a>
+                            <?php } ?>
+                            <a href="<?= base_url('Guru/generateRapor/'.$siswa['nisn']);?>" class="btn btn-info">Download Rapor</a>
                         </td>
                       </tr>
                     <?php endforeach;

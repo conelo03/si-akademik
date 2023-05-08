@@ -24,7 +24,9 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NISN</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Kelamin</th>
-                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                        <?php if($this->session->userdata() == 1){?>
+                          <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
+                        <?php } ?>
                       </tr>
                     </thead>
                     <tbody>
@@ -40,10 +42,12 @@
                             <?php }else{?>
                               <td>Perempuan</td>
                           <?php }?>
-                         <td>
+                        <?php if($this->session->userdata() == 1){?>
+                          <td>
                             <a href="" data-toggle="modal" data-target="#editModal<?= $study['nisn']?>" class="btn btn-primary">Edit</a>
                             <a href="" data-toggle="modal" data-target="#deleteModal<?= $study['nisn']?>" class="btn btn-danger">Hapus</a>
-                         </td>
+                          </td>
+                        <?php } ?>
                       </tr>
                     <?php endforeach;
                     ?>
