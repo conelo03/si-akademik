@@ -1,7 +1,6 @@
 <section class="section">
-<h4 class="text-center text-light">SELAMAT DATANG DI SISTEM INFORMASI AKADEMIK
-TK SANTA EKA PUHU</h4>
-      <div class="row justify-content-center" style="margin-top:50px">
+<h4 class="text-center text-light">Official Website TK SANTA EKA PUHU</h4>
+      <div class="row justify-content-center" style="margin-top:50px; padding-bottom:200px; background-image:url(<?= base_url('/assets/img/sekolah.jpg')?>); background-size: cover;">
           <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">

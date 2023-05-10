@@ -6,7 +6,7 @@
                         <h6>Data Guru</h6>
                       </div>
                       <div>
-                        <?php if($this->session->userdata() == 1){?>
+                        <?php if($this->session->userdata('role') == 1){?>
                           <button class="btn btn-success mb-3" data-toggle="modal" data-target="#addModal">+ Tambah Guru</button>
                         <?php } ?>
                         <?= $this->session->flashdata('message');?>
@@ -22,8 +22,11 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No</th>
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NUPTK</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Kelamin</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jabatan</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Pendidikan Terakhir</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Telepon</th>
-                        <?php if($this->session->userdata() == 1){?>
+                        <?php if($this->session->userdata('role') == 1){?>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                         <?php } ?>
                       </tr>
@@ -36,8 +39,11 @@
                           <td><?= $no++;?></td>
                           <td><?= $teach['nuptk'];?></td>
                           <td><?= $teach['nama'];?></td>
+                          <td><?= $teach['jk'];?></td>
+                          <td><?= $teach['jabatan'];?></td>
+                          <td><?= $teach['pendidikan_terakhir'];?></td>
                           <td><?= $teach['telp'];?></td>
-                        <?php if($this->session->userdata() == 1){?>
+                        <?php if($this->session->userdata('role') == 1){?>
                           <td>
                               <a href="" data-toggle="modal" data-target="#editModal<?= $teach['nuptk']?>" class="btn btn-primary">Edit</a>
                               <a href="" data-toggle="modal" data-target="#deleteModal<?= $teach['nuptk']?>" class="btn btn-danger">Hapus</a>

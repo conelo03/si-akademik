@@ -24,6 +24,13 @@
                         <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">NISN</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Kelamin</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alamat</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Agama</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tempat Lahir</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal Lahir</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tahun Ajaran</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alat Transportasi</th>
+                        <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Tinggal</th>
                         <?php if($this->session->userdata() == 1){?>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                         <?php } ?>
@@ -38,10 +45,18 @@
                          <td><?= $study['nisn'];?></td>
                          <td><?= $study['nama'];?></td>
                          <?php if($study['jk'] == 'L'){?>
-                            <td>Laki-laki</td>
-                            <?php }else{?>
-                              <td>Perempuan</td>
-                          <?php }?>
+                          <td>Laki-laki</td>
+                          <?php }else{?>
+                            <td>Perempuan</td>
+                            <?php }?>
+                          <td><?= $study['alamat'];?></td>
+                          <td><?= $study['agama'];?></td>
+                          <td><?= $study['tempat_lahir'];?></td>
+                          <td><?= $study['tgl_lahir'];?></td>
+                          <td><?= $study['tahun_ajaran'];?></td>
+                          <td><?= $study['alat_transportasi'];?></td>
+                          <td><?= $study['jenis_tinggal'];?></td>
+                      
                         <?php if($this->session->userdata() == 1){?>
                           <td>
                             <a href="" data-toggle="modal" data-target="#editModal<?= $study['nisn']?>" class="btn btn-primary">Edit</a>

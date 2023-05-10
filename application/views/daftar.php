@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Login &mdash; Siakad</title>
+  <title>Daftar &mdash; Siakad</title>
 
   <!-- General CSS Files -->
   <link rel="stylesheet" href="<?= base_url()?>assets/modules/bootstrap/css/bootstrap.min.css">
@@ -42,34 +42,39 @@
               </div>
             </div>
             <div class="card card-primary">
-              <div class="card-header"><h4>Login</h4></div>
-                <p class="text-center">Selamat Datang di Login Siakad TK Santa Eka Puhu</p>
+              <div class="card-header text-center">
+                <h4>Daftar</h4>
+              </div>
+                <p class="text-center">Silahkan daftar terlebih dahulu</p>
               <div class="card-body">
                 <form method="POST" autocomplete="off" action="<?= base_url('Auth/login')?>" class="needs-validation" novalidate="">
                   <div class="form-group">
+                    <label for="nama_depan">Nama Depan</label>
+                    <input id="nama_depan" type="text" class="form-control" name="nama_depan" tabindex="1" required autofocus autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label for="nama_belakang">Nama Belakang</label>
+                    <input id="nama_belakang" type="text" class="form-control" name="nama_belakang" tabindex="1" required autofocus autocomplete="off">
+                  </div>
+                  <div class="form-group">
+                    <label for="no_hp">Nomor Handphone</label>
+                    <input id="no_hp" type="text" class="form-control" name="no_hp" tabindex="1" required autofocus autocomplete="off">
+                  </div>
+                  <div class="form-group">
                     <label for="email">Username</label>
                     <input id="email" type="text" class="form-control" name="username" tabindex="1" required autofocus autocomplete="off">
-                    <div class="invalid-feedback">
-                      Please fill in your username
-                    </div>
                   </div>
-
                   <div class="form-group">
                     <div class="d-block">
                     	<label for="password" class="control-label">Password</label>
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required autocomplete="off">
-                    <div class="invalid-feedback">
-                      please fill in your password
-                    </div>
                   </div>
-
                   <div class="form-group">
                     <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                      Login
+                      Daftar
                     </button>
                   </div>
-                    <p class="text-center">Belum memiliki akun? <a href="<?= base_url('Auth/daftar');?>" class="text-link">Daftar</a></p>
                 </form>
 
 

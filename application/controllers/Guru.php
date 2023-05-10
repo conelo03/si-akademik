@@ -90,7 +90,7 @@ class Guru extends CI_Controller {
         }else{
             $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Nilai Sudah diinput!</div>');
         }
-        return redirect('Guru/raporSiswa');
+        return redirect('Guru/raporSiswa/2');
     }
 
     public function editNilai($nisn,$semester){
@@ -103,14 +103,14 @@ class Guru extends CI_Controller {
         //Validate duplikat nilai pengembangan
         $this->Rapor_Model->isDuplicate($req['nisn'],$req['id_pengembangan'],$semester,'update');
         $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Update Nilai!</div>');
-        return redirect('Guru/raporSiswa');
+        return redirect('Guru/raporSiswa/2');
 
     }
 
     public function hapusNilai($id){
         $this->Master_Model->delete('id_raport','raport',$id);
         $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Hapus Nilai!</div>');
-        return redirect('Guru/raporSiswa');
+        return redirect('Guru/raporSiswa/2');
     }
 
     public function filterAbsen($role){
@@ -132,7 +132,6 @@ class Guru extends CI_Controller {
             'rapor' => $this->Rapor_Model->join('master_siswa','raport','pengembangan','nisn','id_pengembangan',$nisn),
             'rapor1' => $this->Rapor_Model->join('master_siswa','raport','pengembangan','nisn','id_pengembangan',$nisn)
         ];
-        // var_dump($data['rapor1']);die;
         $this->load->library('pdf');
         $html = $this->load->view('guru/pdf_rapor', $data, true);
         $this->pdf->createPDF($html, 'mypdf', false);

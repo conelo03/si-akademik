@@ -12,6 +12,10 @@ class Auth extends CI_Controller {
             return redirect('Auth/dashboard_users/'.$role);
         }
 	}
+
+    public function daftar(){
+        return $this->load->view('daftar');
+    }
     
     public function login(){
         $request = [
