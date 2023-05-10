@@ -6,7 +6,7 @@
                  <div class="row">
                     <div style="margin-right:600px">
                         <h6>Absensi Siswa</h6>
-                        <?php if($this->session->userdata('message') == 2){?>
+                        <?php if($this->session->userdata('role') == 2){?>
                           <a href="" class="btn btn-primary mb-3" data-toggle="modal" data-target="#absenModal">Absen</a>
                         <?php } ?>
                         <?= $this->session->flashdata('message');?>
@@ -31,7 +31,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Absensi</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tanggal</th>
-                        <?php if($this->session->userdata() == 1){?>
+                        <?php if($this->session->userdata('role') == 2){?>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                         <?php } ?>
                       </tr>
@@ -49,7 +49,7 @@
                          <td><?= $attendant['nama'];?></td>
                          <td><?= $attendant['kehadiran'];?></td>
                          <td><?= $attendant['tanggal'];?></td>
-                         <?php if($this->session->userdata() == 1){?>
+                         <?php if($this->session->userdata('role') == 2){?>
                          <td>
                             <a href="" class="btn btn-primary" data-toggle="modal" data-target="#koreksiModal<?= $attendant['nisn']?>">Koreksi</a>
                         </td>
