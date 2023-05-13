@@ -21,7 +21,7 @@
             <div class="container-fluid">
               <div class="row">
                 <?php foreach($kegiatan as $act): ?>
-                  <div class="col-md-6">
+                  <div class="col-md-6 mt-3">
                     <div class="row">
                       <div class="col-md-6">
                         <img src="<?= base_url('assets/img/kegiatan/'.$act['foto_kegiatan'])?>" alt="Belum ada Gambar" width="200" height="200">
@@ -29,6 +29,10 @@
                       <div class="col-md-6">
                         <label for=""><?= $act['nama_kegiatan'];?></label><br>
                         <p><?= $act['deskripsi'];?></p>
+                        <div class="form-group">
+                              <a href="" data-toggle="modal" data-target="#editModal<?= $act['id_kegiatan']?>" class="btn btn-primary">Edit</a>
+                              <a href="" data-toggle="modal" data-target="#deleteModal<?= $act['id_kegiatan']?>" class="btn btn-danger">Hapus</a>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -74,7 +78,7 @@
 
 <?php foreach ($kegiatan as $act1) :?>
     <!-- Modal Edit -->
-    <div class="modal fade" id="editModal<?= $act1['id_jadwal']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="editModal<?= $act1['id_kegiatan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -82,19 +86,14 @@
         <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/updateKegiatan/'.$act1['id_jadwal']);?>" method="POST" class="form">
+        <form action="<?= base_url('Akademik/updateKegiatan/'.$act1['id_kegiatan']);?>" method="POST" class="form">
+        <label for="">Nama Kegiatan</label>
         <div class="form-group">
-                <input type="text" class="form-control" name="jadwal" value="<?= $act1['jadwal'];?>" placeholder="Jadwal">
+                <input type="text" class="form-control" name="jadwal" value="<?= $act1['nama_kegiatan'];?>" placeholder="Jadwal">
             </div>
+            <label for="">Deskripsi</label>
             <div class="form-group">
-                <input type="text" class="form-control" name="harian" value="<?= $act1['harian'];?>" placeholder="Harian">
-            </div>
-            <div class="form-group">
-                <input type="text" class="form-control" name="materi" value="<?= $act1['materi_kegiatan'];?>" placeholder="Materi Kegiatan">
-            </div>
-            <label for="">Keterangan</label>
-            <div class="form-group">
-                <textarea name="keterangan" id="" class="form-control"><?= $act1['keterangan'];?></textarea>
+                <textarea name="deskripsi" id="" class="form-control"><?= $act1['deskripsi'];?></textarea>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
@@ -109,7 +108,7 @@
 
 <?php foreach ($kegiatan as $act2) :?>
     <!-- Modal Edit -->
-    <div class="modal fade" id="deleteModal<?= $act2['id_jadwal']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal<?= $act2['id_kegiatan']; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -117,7 +116,7 @@
         <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/deleteKegiatan/'.$act2['id_jadwal']);?>" method="POST" class="form">
+        <form action="<?= base_url('Akademik/deleteKegiatan/'.$act2['id_kegiatan']);?>" method="POST" class="form">
             <p>Apakah Anda yakin ingin menghapus kegiatan ini?</p>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>

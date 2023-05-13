@@ -34,16 +34,17 @@
         <div class="row">
           <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
             <div class="row mt-3">
-              <div class="col-md-4">
+              <div class="col-md-3">
                 <img  class="justify-content-right" src="<?= base_url('assets/img/logo/logo-tk.png')?>" width=80 height=80 alt="">
               </div>
-              <div class="col-md-8">
-                <h4 class="text-left text-white">TK Santa Eka Puhu</h4>
+              <div class="col-md-9">
+                <h4 class="text-left text-white" style="margin-top:20px">TK Santa Eka Puhu</h4>
               </div>
             </div>
             <div class="card card-primary">
-              <div class="card-header"><h4>Login</h4></div>
-                <p class="text-center">Selamat Datang di Login Siakad TK Santa Eka Puhu</p>
+              <div class="card-header">
+                <h3 style="margin-left:110px">Login</h3>
+              </div>
               <div class="card-body">
                 <form method="POST" autocomplete="off" action="<?= base_url('Auth/login')?>" class="needs-validation" novalidate="">
                   <div class="form-group">
@@ -59,6 +60,7 @@
                     	<label for="password" class="control-label">Password</label>
                     </div>
                     <input id="password" type="password" class="form-control" name="password" tabindex="2" required autocomplete="off">
+                    <input type="checkbox" class="mt-3" onclick="myFunction()">Show Password
                     <div class="invalid-feedback">
                       please fill in your password
                     </div>
@@ -97,6 +99,16 @@
   <!-- JS Libraies -->
 
   <!-- Page Specific JS File -->
+  <script>
+    function myFunction() {
+  var x = document.getElementById("password");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
+  </script>
   
   <!-- Template JS File -->
   <script src="<?= base_url()?>assets/js/scripts.js"></script>

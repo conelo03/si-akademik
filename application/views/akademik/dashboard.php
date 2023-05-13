@@ -1,6 +1,8 @@
 <section class="section">
-<h4 class="text-center text-light">Official Website TK SANTA EKA PUHU</h4>
-      <div class="row justify-content-center" style="margin-top:50px; padding-bottom:200px; background-image:url(<?= base_url('/assets/img/sekolah.jpg')?>); background-size: cover;">
+  <div class="row justify-content-center" style="margin-top:50px; padding-bottom:200px; background-image:url(<?= base_url('/assets/img/sekolah.jpg')?>); background-size: cover;">
+    <div class="row justify-content-center">
+      <h4 class="text-center text-light mt-3" style="margin-left:200px;margin-right:200px">Official Website TK SANTA EKA PUHU</h4>
+    </div>
           <div class="col-xl-3 col-sm-6 mb-xl-0 mb-4">
           <div class="card">
             <div class="card-body p-3">

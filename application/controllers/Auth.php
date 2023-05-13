@@ -27,7 +27,8 @@ class Auth extends CI_Controller {
             if($request['password'] === $validate['password']){
                 $this->session->set_userdata([
                     'id' => $validate['id'],
-                    'role' => $validate['role']
+                    'role' => $validate['role'],
+                    'foto' => $validate['foto']
                 ]);
                 redirect('Auth/dashboard_users/'.$validate['role']);
             }else{
@@ -77,19 +78,27 @@ class Auth extends CI_Controller {
             'content' => 'profil_user',
             'profile' => $this->Master_Model->getBy('users','id',$this->session->userdata('id'))
         ];
-        // var_dump($data['profile']);die;
         $this->load->view('dashboard_template/main',$data);
     }
 
     public function update_profile($id,$role){
-        $req=[
-            'username' => $this->input->post('username'),
-            'nama_depan' => $this->input->post('nama_depan'),
-            'nama_belakang' => $this->input->post('nama_belakang'),
-            'no_hp' => $this->input->post('no_hp')
-        ];
-        $this->Master_Model->update('id','users',$req,$id);
-        $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah profil!</div>');
+        $config['upload_path']          = './assets/img/profil';
+        $config['allowed_types']        = 'gif|jpg|png';
+        $config['max_size']             = 3000;
+        $config['max_width']            = 2000;
+        $config['max_height']           = 2000;
+        $this->load->library('upload', $config);
+        if($this->upload->do_upload('foto')){
+          $req=[
+              'username' => $this->input->post('username'),
+              'nama_depan' => $this->input->post('nama_depan'),
+              'nama_belakang' => $this->input->post('nama_belakang'),
+              'no_hp' => $this->input->post('no_hp'),
+              'foto' => $this->upload->data('file_name')
+          ];
+          $this->Master_Model->update('id','users',$req,$id);
+          $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah profil!</div>');
+        }
         return redirect('Auth/user_profile/'.$role);
     }
 

@@ -136,12 +136,12 @@ public function updateSiswa($id){
   }
 
 public function updateKegiatan($id){
-  $request = [
-    'jadwal'=> $this->input->post('jadwal'),
-    'harian'=> $this->input->post('harian'),
-    'materi_kegiatan'=> $this->input->post('materi'),
-    'keterangan'=> $this->input->post('keterangan'),
-];
+    $request = [
+      'jadwal'=> $this->input->post('jadwal'),
+      'harian'=> $this->input->post('harian'),
+      'materi_kegiatan'=> $this->input->post('materi'),
+      'keterangan'=> $this->input->post('keterangan'),
+  ];
     $this->Master_Model->update('id_jadwal','jadwal_kegiatan',$request,$id);
     $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mengubah kegiatan!</div>');
     return redirect('Akademik/kegiatan');

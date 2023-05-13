@@ -39,7 +39,7 @@
 
         <ul class="navbar-nav navbar" style="margin-left:500px">
           <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-            <img alt="image" src="assets/img/avatar/avatar-1.png" class="rounded-circle mr-1">
+            <img alt="image" src="<?= base_url('assets/img/profil/'.$this->session->userdata('foto'))?>" class="rounded-circle mr-1">
             <div class="d-sm-none d-lg-inline-block">Hi, <?php
             if ($role == 1){
               echo 'Admin';
