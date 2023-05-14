@@ -86,11 +86,14 @@
         <button type="button" class="btn btn-close" data-dismiss="modal" aria-label="Close">X</button>
       </div>
       <div class="modal-body">
-        <form action="<?= base_url('Akademik/updateKegiatan/'.$act1['id_kegiatan']);?>" method="POST" class="form">
+        <form action="<?= base_url('Akademik/updateKegiatan/'.$act1['id_kegiatan']);?>" enctype="multipart/form-data" method="POST" class="form">
         <label for="">Nama Kegiatan</label>
         <div class="form-group">
-                <input type="text" class="form-control" name="jadwal" value="<?= $act1['nama_kegiatan'];?>" placeholder="Jadwal">
+                <input type="text" class="form-control" name="nama" value="<?= $act1['nama_kegiatan'];?>" placeholder="Nama Kegiatan">
             </div>
+        <div class="form-group">
+            <input type="file" value="<?= $act1['foto_kegiatan']; ?>" name="foto" id="imgInp" class="form-control mt-3" placeholder="Foto">
+        </div>
             <label for="">Deskripsi</label>
             <div class="form-group">
                 <textarea name="deskripsi" id="" class="form-control"><?= $act1['deskripsi'];?></textarea>
