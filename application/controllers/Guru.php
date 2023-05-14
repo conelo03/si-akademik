@@ -23,7 +23,7 @@ class Guru extends CI_Controller {
         ];
         $this->Absen_Model->add($request,'absen_siswa');
         $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil Absen!</div>');
-        return redirect('Guru/absenSiswa');
+        return redirect('Guru/absenSiswa/2');
     }
 
     public function koreksiAbsen($nisn){
@@ -34,7 +34,7 @@ class Guru extends CI_Controller {
         ];
         $this->Master_Model->update('nisn','absen_siswa',$request,$nisn);
         $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil koreksi Absen!</div>');
-        return redirect('Guru/absenSiswa');
+        return redirect('Guru/absenSiswa/2');
     }
 
     public function raporSiswa($role){

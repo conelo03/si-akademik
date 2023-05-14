@@ -31,7 +31,7 @@
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Tahun Ajaran</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Alat Transportasi</th>
                         <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Jenis Tinggal</th>
-                        <?php if($this->session->userdata() == 1){?>
+                        <?php if($this->session->userdata('role') == 1){?>
                           <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</th>
                         <?php } ?>
                       </tr>
@@ -57,7 +57,7 @@
                           <td><?= $study['alat_transportasi'];?></td>
                           <td><?= $study['jenis_tinggal'];?></td>
                       
-                        <?php if($this->session->userdata() == 1){?>
+                        <?php if($this->session->userdata('role') == 1){?>
                           <td>
                             <a href="" data-toggle="modal" data-target="#editModal<?= $study['nisn']?>" class="btn btn-primary">Edit</a>
                             <a href="" data-toggle="modal" data-target="#deleteModal<?= $study['nisn']?>" class="btn btn-danger">Hapus</a>

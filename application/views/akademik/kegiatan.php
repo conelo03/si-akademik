@@ -29,10 +29,12 @@
                       <div class="col-md-6">
                         <label for=""><?= $act['nama_kegiatan'];?></label><br>
                         <p><?= $act['deskripsi'];?></p>
-                        <div class="form-group">
-                              <a href="" data-toggle="modal" data-target="#editModal<?= $act['id_kegiatan']?>" class="btn btn-primary">Edit</a>
-                              <a href="" data-toggle="modal" data-target="#deleteModal<?= $act['id_kegiatan']?>" class="btn btn-danger">Hapus</a>
-                        </div>
+                        <?php if($this->session->userdata('role') == 1){?>
+                          <div class="form-group">
+                            <a href="" data-toggle="modal" data-target="#editModal<?= $act['id_kegiatan']?>" class="btn btn-primary">Edit</a>
+                            <a href="" data-toggle="modal" data-target="#deleteModal<?= $act['id_kegiatan']?>" class="btn btn-danger">Hapus</a>
+                          </div>
+                        <?php } ?>
                       </div>
                     </div>
                   </div>
