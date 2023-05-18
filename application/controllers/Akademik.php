@@ -52,11 +52,16 @@ class Akademik extends CI_Controller {
   }
 
   public function master_siswa($role){
+    if($this->session->userdata('role') == 3){
+      $data_siswa = $this->db->get_where('master_siswa',['nisn' => $this->session->userdata('id_daftar')])->result_array();
+    }else{
+      $data_siswa = $this->Master_Model->get('master_siswa');
+    }
     $data = [
       'title' => 'Data Siswa',
       'role' => $role,
       'content' => 'akademik/siswa',
-      'siswa' => $this->Master_Model->get('master_siswa')
+      'siswa' => $data_siswa
   ];
   $this->load->view('dashboard_template/main',$data);
   }

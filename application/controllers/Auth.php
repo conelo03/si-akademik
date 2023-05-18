@@ -16,6 +16,31 @@ class Auth extends CI_Controller {
     public function daftar(){
         return $this->load->view('daftar');
     }
+
+    public function do_daftar(){
+        $req=[
+            'id_daftar_siswa' => $this->input->post('id_daftar'),
+            'username' => $this->input->post('username'),
+            'password' => $this->input->post('password'),
+            'nama_depan' => $this->input->post('nama_depan'),
+            'nama_belakang' => $this->input->post('nama_belakang'),
+            'no_hp' => $this->input->post('no_hp'),
+            'role' => 3
+        ];
+        $validate = $this->db->get_where('master_siswa',['nisn'=> $req['id_daftar_siswa']])->row_array();
+        if($validate !== NULL){
+            $count_id_daftar = $this->db->get_where('users',['id_daftar_siswa'=> $req['id_daftar_siswa']])->num_rows();
+            if($count_id_daftar == 1){
+                $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Akun dengan ID Pendaftaran '.$req['id_daftar_siswa'].' sudah terdaftar!</div>');
+            }else{
+                $this->Master_Model->add($req,'users');
+                $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil daftar! Silahkan login terlebih dahulu</div>');
+            }
+        }else{
+            $this->session->set_flashdata('message','<div class="alert alert-danger" role="alert">Gagal daftar! ID Pendaftaran tidak ditemukan</div>');
+        }
+        return redirect('Auth');
+    }
     
     public function login(){
         $request = [
@@ -28,7 +53,8 @@ class Auth extends CI_Controller {
                 $this->session->set_userdata([
                     'id' => $validate['id'],
                     'role' => $validate['role'],
-                    'foto' => $validate['foto']
+                    'foto' => $validate['foto'],
+                    'id_daftar' => $validate['id_daftar_siswa']
                 ]);
                 redirect('Auth/dashboard_users/'.$validate['role']);
             }else{

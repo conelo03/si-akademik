@@ -46,6 +46,7 @@
                 <h3 style="margin-left:110px">Login</h3>
               </div>
               <div class="card-body">
+                <?= $this->session->flashdata('message');?>
                 <form method="POST" autocomplete="off" action="<?= base_url('Auth/login')?>" class="needs-validation" novalidate="">
                   <div class="form-group">
                     <label for="email">Username</label>
@@ -71,7 +72,7 @@
                       Login
                     </button>
                   </div>
-                    <!-- <p class="text-center">Belum memiliki akun? <a href="<?= base_url('Auth/daftar');?>" class="text-link">Daftar</a></p> -->
+                    <p class="text-center">Belum memiliki akun? <a href="<?= base_url('Auth/daftar');?>" class="text-link">Daftar</a></p>
                 </form>
 
 

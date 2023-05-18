@@ -47,7 +47,11 @@
               </div>
                 <p class="text-center">Silahkan daftar terlebih dahulu</p>
               <div class="card-body">
-                <form method="POST" autocomplete="off" action="<?= base_url('Auth/login')?>" class="needs-validation" novalidate="">
+                <form method="POST" autocomplete="off" action="<?= base_url('Auth/do_daftar')?>" class="needs-validation" novalidate="">
+                <div class="form-group">
+                    <label for="id_daftar">ID Pendaftaran Siswa</label>
+                    <input id="id_daftar" type="text" class="form-control" name="id_daftar" tabindex="1" required autofocus autocomplete="off">
+                </div>
                   <div class="form-group">
                     <label for="nama_depan">Nama Depan</label>
                     <input id="nama_depan" type="text" class="form-control" name="nama_depan" tabindex="1" required autofocus autocomplete="off">

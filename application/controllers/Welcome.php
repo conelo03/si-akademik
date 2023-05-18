@@ -60,7 +60,7 @@ class Welcome extends CI_Controller {
 			  'akta'=> $this->upload->data('file_name')
 			];
 		  $this->Master_Model->add($request,'master_siswa');
-		  $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mendaftar!</div>');
+		  $this->session->set_flashdata('message','<div class="alert alert-info" role="alert">Berhasil mendaftar dengan ID '.$request['nisn'].', mohon simpan ID Pendaftaran Anda!</div>');
 		}
 		return redirect('Welcome/daftar');
 	}
